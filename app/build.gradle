@@ -1,0 +1,91 @@
+apply plugin: 'com.android.application'
+apply plugin: 'org.jetbrains.kotlin.android'
+apply plugin: 'com.applayr.maplayr-plugin'
+
+repositories {
+    mavenCentral()
+    maven { url "https://jitpack.io" }
+    maven { url 'https://maven.google.com' }
+
+    maven {
+        url = "https://maven.pkg.github.com/applayr/MapLayr-Android"
+//            credentials {
+//                username { GitHub username }
+//                password { Github token with packages read access }
+//            }
+    }
+}
+
+android {
+    namespace 'com.applayr.maplayr.sample'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.applayr.maplayr.sample"
+        minSdk 21
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+    }
+
+    flavorDimensions = ["map"]
+
+    productFlavors {
+        theme_park {
+            dimension "map"
+        }
+        zoo {
+            dimension "map"
+        }
+    }
+}
+
+appLayr {
+    apiKey = "{api_key}"
+    cacheMapsForHours = 24
+    productFlavors {
+        theme_park {
+            mapId = "c1b9f54d-6645-4433-8908-89ea914e70c7"
+        }
+        zoo {
+            mapId = "5a1400cf-db2b-4dec-90f2-8f603cab4e72"
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    // Google Play Services - FusedLocationProviderClient
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
+
+    // Process Lifecycle Owner
+    implementation "androidx.lifecycle:lifecycle-process:2.5.1"
+
+    // Attractions.io MapView
+    implementation "com.applayr:maplayr:0.0.21"
+}

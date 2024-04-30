@@ -1,0 +1,22 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+
+        maven {
+            url = "https://maven.pkg.github.com/applayr/MapLayr-Android"
+//            credentials {
+//                username { GitHub username }
+//                password { Github token with packages read access }
+//            }
+        }
+    }
+    dependencies {
+        classpath 'com.applayr:maplayr-plugin:0.0.21'
+        classpath 'com.android.tools.build:gradle:7.4.0'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.21'
+    }
+}
