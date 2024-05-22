@@ -87,5 +87,5 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-process:2.5.1"
 
     // Attractions.io MapView
-    implementation "com.applayr:maplayr:0.0.21"
+    implementation "com.applayr:maplayr:0.0.27"
 }

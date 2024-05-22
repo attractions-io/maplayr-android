@@ -19,8 +19,6 @@ class MyApplication: Application() {
                 // Application moved to foreground
                 Map.checkForUpdates(this@MyApplication)
             }
-
         })
     }
-
 }

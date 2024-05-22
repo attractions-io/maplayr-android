@@ -110,9 +110,7 @@ class MainActivity : AppCompatActivity() {
 
                             // Set the camera position to view the route
                             binding.myMapView.moveCamera(enclosingCircle?.center, null, enclosingCircle?.span, 0.0, Math.toRadians(30.0), true)
-
                         }
-
                     } else {
 
                         // Show an off resort error
@@ -253,5 +251,4 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
         _binding = null
     }
-
 }
