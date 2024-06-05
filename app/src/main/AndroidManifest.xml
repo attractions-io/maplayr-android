@@ -8,7 +8,6 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
-        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -16,7 +15,7 @@
         android:theme="@style/Theme.MapSDKSampleApplication"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".SampleSelectionActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,6 +23,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ExtendedSampleActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".NotBundledSampleActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".NonMapViewSampleActivity"
+            android:exported="false"/>
     </application>
 
 </manifest>

@@ -10,8 +10,8 @@ repositories {
     maven {
         url = "https://maven.pkg.github.com/applayr/MapLayr-Android"
 //            credentials {
-//                username { GitHub username }
-//                password { Github token with packages read access }
+//                username "GitHub username here"
+//                password "Github token with packages read access here"
 //            }
     }
 }
@@ -42,9 +42,6 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    buildFeatures {
-        viewBinding true
-    }
 
     flavorDimensions = ["map"]
 
@@ -59,7 +56,7 @@ android {
 }
 
 appLayr {
-    apiKey = "{api_key}"
+    apiKey = "api_key_here"
     cacheMapsForHours = 24
     productFlavors {
         theme_park {
@@ -87,5 +84,5 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-process:2.5.1"
 
     // Attractions.io MapView
-    implementation "com.applayr:maplayr:0.0.27"
+    implementation "com.applayr:maplayr:0.0.30"
 }

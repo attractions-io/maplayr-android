@@ -28,8 +28,8 @@ buildscript {
         maven {
             url = "https://maven.pkg.github.com/applayr/MapLayr-Android"
             credentials {
-                username { GitHub username }
-                password { Github token with packages read access }
+                username "GitHub username here"
+                password "Github token with packages read access here"
             }
         }
     }
@@ -65,7 +65,7 @@ Add the MapLayr plugin class path to Gradle:
 ```Groovy
 buildscript {
     dependencies {
-        classpath 'com.applayr:maplayr-plugin:0.0.27'
+        classpath 'com.applayr:maplayr-plugin:0.0.30'
     }
 }
 ```
@@ -172,8 +172,8 @@ repositories {
     maven {
         url = "https://maven.pkg.github.com/applayr/MapLayr-Android"
         credentials {
-            username { GitHub username }
-            password { Github token with packages read access }
+            username "GitHub username here"
+            password "Github token with packages read access here"
         }
     }
 }
@@ -185,7 +185,7 @@ An example can be found here: [build.gradle](app/build.gradle#L10-L16)
 
 ```Groovy
 dependencies {
-    implementation "com.applayr:maplayr:0.0.27"
+    implementation "com.applayr:maplayr:0.0.30"
 }
 ```
 

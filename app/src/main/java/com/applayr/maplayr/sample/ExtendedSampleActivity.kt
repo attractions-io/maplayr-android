@@ -9,11 +9,13 @@ import android.location.Location
 import android.os.Bundle
 import android.os.Looper
 import android.view.View
+import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.doOnLayout
+import com.applayr.maplayr.MapView
 import com.applayr.maplayr.androidLayer.annotation.CoordinateAnnotationLayer
 import com.applayr.maplayr.model.coordinate.GeographicCoordinate
 import com.applayr.maplayr.model.map.Map
@@ -22,15 +24,14 @@ import com.applayr.maplayr.model.opengl.shapes.Shape
 import com.applayr.maplayr.sample.data.annotationlayer.AnnotationLayerAdapter
 import com.applayr.maplayr.sample.data.model.Attraction
 import com.applayr.maplayr.sample.data.model.AttractionManager
-import com.applayr.maplayr.sample.databinding.ActivityMainBinding
 import com.google.android.gms.location.*
 
-class MainActivity : AppCompatActivity() {
+class ExtendedSampleActivity : AppCompatActivity() {
 
-    private var _binding: ActivityMainBinding? = null
+    private var mapViewVariable: MapView? = null
 
-    private val binding
-        get() = _binding!!
+    private val mapView: MapView
+        get() = mapViewVariable ?: throw Exception("Map view not initialised")
 
     // Location marker
     private lateinit var locationMarker: LocationMarker
@@ -44,15 +45,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        _binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(R.layout.activity_extended_sample)
+
+        mapViewVariable = findViewById(R.id.map_view)
 
         /* ---------- ---------- ---------- ---------- ---------- */
         /* -- Map Initialisation -- */
         /* ---------- ---------- ---------- ---------- ---------- */
 
         // Load the map metadata and assign it to the map view
-        val map = Map.managed(applicationContext, BuildConfig.MAPLAYR_MAP)
-        binding.myMapView.map = map
+        mapView.setMap(Map.managed(applicationContext, BuildConfig.MAPLAYR_MAP))
 
         /* ---------- ---------- ---------- ---------- ---------- */
         /* -- Annotation layer -- */
@@ -65,68 +67,92 @@ class MainActivity : AppCompatActivity() {
             insert(AttractionManager.thrillAttractions)
         }
 
-        coordinateAnnotationLayer.listener = object : CoordinateAnnotationLayer.Listener<Attraction> {
+        mapView.mapContextLiveData.observe(mapView) { mapContext ->
+            mapContext ?: return@observe
 
-            override fun didDeselectAnnotation(element: Attraction, coordinateAnnotationLayer: CoordinateAnnotationLayer<Attraction>) {
-                binding.myMapView.shapes = listOf()
-            }
+            mapView.shapes = listOf()
 
-            override fun didSelectAnnotation(element: Attraction, coordinateAnnotationLayer: CoordinateAnnotationLayer<Attraction>) {
+            coordinateAnnotationLayer.listener = object : CoordinateAnnotationLayer.Listener<Attraction> {
 
-                /* ---------- ---------- ---------- ---------- ---------- */
-                /* -- Route Calculation -- */
-                /* ---------- ---------- ---------- ---------- ---------- */
+                override fun didDeselectAnnotation(
+                    element: Attraction,
+                    coordinateAnnotationLayer: CoordinateAnnotationLayer<Attraction>
+                ) {
+                    mapView.shapes = listOf()
+                }
 
-                currentLocation?.let { currentLocation ->
+                override fun didSelectAnnotation(
+                    element: Attraction,
+                    coordinateAnnotationLayer: CoordinateAnnotationLayer<Attraction>
+                ) {
 
-                    if(binding.myMapView.map?.isLocationInBounds(currentLocation) == true) {
+                    /* ---------- ---------- ---------- ---------- ---------- */
+                    /* -- Route Calculation -- */
+                    /* ---------- ---------- ---------- ---------- ---------- */
 
-                        // Calculate the route from the user's current location to the selected element
-                        val route = binding.myMapView.map?.pathNetwork?.calculateDirections(
-                            GeographicCoordinate(currentLocation.latitude, currentLocation.longitude),
-                            listOf(GeographicCoordinate(element.latitude, element.longitude))
-                        )
+                    currentLocation?.let { currentLocation ->
 
-                        // If the route is available add an outlined shape representing the route to the map and move the camera
-                        route?.let { route ->
-                            // Add shapes to the map
-                            val outline = Shape(route.path, Color.BLUE, 4f)
-                            val inner = Shape(route.path, Color.WHITE, 2f)
+                        if (mapContext.isLocationInBounds(currentLocation)) {
 
-                            binding.myMapView.shapes = listOf(outline, inner)
-
-                            // Animate the camera
-                            // Compute the smallest circle that covers the start coordinate, the destination coordinate and all the points along the route
-                            val pointsAlongRoute = route.pointsAlongRoute.mapNotNull { mapPoint ->
-                                binding.myMapView.map?.geographicProjection?.mapPointToGeographic(mapPoint)
-                            }
-
-                            val enclosingCircle = binding.myMapView.computeSmallestCircle(
-                                pointsAlongRoute + listOf(
-                                    GeographicCoordinate(currentLocation.latitude, currentLocation.longitude), // Start of the route
-                                    GeographicCoordinate(element.latitude, element.longitude), // Destination of the route
-                                )
+                            // Calculate the route from the user's current location to the selected element
+                            val route = mapContext.pathNetwork?.calculateDirections(
+                                GeographicCoordinate(currentLocation.latitude, currentLocation.longitude),
+                                listOf(GeographicCoordinate(element.latitude, element.longitude))
                             )
 
-                            // Set the camera position to view the route
-                            binding.myMapView.moveCamera(enclosingCircle?.center, null, enclosingCircle?.span, 0.0, Math.toRadians(30.0), true)
+                            // If the route is available add an outlined shape representing the route to the map and move the camera
+                            route?.let { route ->
+                                // Add shapes to the map
+                                val outline = Shape(route.path, Color.BLUE, 4f)
+                                val inner = Shape(route.path, Color.WHITE, 2f)
+
+                                mapView.shapes = listOf(outline, inner)
+
+                                // Animate the camera
+                                // Compute the smallest circle that covers the start coordinate, the destination coordinate and all the points along the route
+                                val pointsAlongRoute = route.pointsAlongRoute.map { mapPoint ->
+                                    mapContext.geographicProjection.mapPointToGeographic(mapPoint)
+                                }
+
+                                val enclosingCircle = mapView.computeSmallestCircle(
+                                    pointsAlongRoute + listOf(
+                                        GeographicCoordinate(
+                                            currentLocation.latitude,
+                                            currentLocation.longitude
+                                        ), // Start of the route
+                                        GeographicCoordinate(
+                                            element.latitude,
+                                            element.longitude
+                                        ), // Destination of the route
+                                    )
+                                )
+
+                                // Set the camera position to view the route
+                                mapView.moveCamera(
+                                    enclosingCircle?.center,
+                                    null,
+                                    enclosingCircle?.span,
+                                    0.0,
+                                    Math.toRadians(30.0),
+                                    true
+                                )
+                            }
+                        } else {
+                            // Show an off resort error
+                            AlertDialog.Builder(this@ExtendedSampleActivity)
+                                .setTitle("Error")
+                                .setMessage("Unable to create route whilst you're not on resort")
+                                .setNeutralButton("Ok", null)
+                                .show()
+
                         }
-                    } else {
-
-                        // Show an off resort error
-                        AlertDialog.Builder(this@MainActivity)
-                            .setTitle("Error")
-                            .setMessage("Unable to create route whilst you're not on resort")
-                            .setNeutralButton("Ok", null)
-                            .show()
-
                     }
                 }
             }
         }
 
         // Add the CoordinateAnnotationLayer to the map view
-        binding.myMapView.addMapLayer(coordinateAnnotationLayer)
+        mapView.addMapLayer(coordinateAnnotationLayer)
 
         /* ---------- ---------- ---------- ---------- ---------- */
         /* -- Location marker -- */
@@ -135,7 +161,7 @@ class MainActivity : AppCompatActivity() {
         // Create a location marker and add it to the map view
         locationMarker = LocationMarker()
 
-        binding.myMapView.addLocationMarker(locationMarker)
+        mapView.addLocationMarker(locationMarker)
 
         /* -- Location permissions & location updates -- */
         // Get the FusedLocationProviderClient
@@ -160,12 +186,12 @@ class MainActivity : AppCompatActivity() {
         /* ---------- ---------- ---------- ---------- ---------- */
 
         // Compute the smallest circle that covers all of the thrill attractions
-        val enclosingCircle = binding.myMapView.computeSmallestCircle(AttractionManager.thrillAttractions.map { attraction ->
+        val enclosingCircle = mapView.computeSmallestCircle(AttractionManager.thrillAttractions.map { attraction ->
             GeographicCoordinate(attraction.latitude, attraction.longitude)
         })
 
         // Set the initial camera position to view all of the thrill attractions
-        binding.myMapView.moveCamera(enclosingCircle?.center, null, enclosingCircle?.span, 0.0, Math.toRadians(45.0), false)
+        mapView.moveCamera(enclosingCircle?.center, null, enclosingCircle?.span, 0.0, Math.toRadians(45.0), false)
 
         /* ---------- ---------- ---------- ---------- ---------- */
         /* -- Safe Area Insets -- */
@@ -174,25 +200,23 @@ class MainActivity : AppCompatActivity() {
         val centreOnDaeva = false
         val useSafeAreaInsets = false
 
-        binding.myTextView.visibility = if (useSafeAreaInsets) View.VISIBLE else View.GONE
+        findViewById<TextView>(R.id.text_view).visibility = if (useSafeAreaInsets) View.VISIBLE else View.GONE
 
-        binding.myMapView.doOnLayout {
+        mapView.doOnLayout {
 
             if (useSafeAreaInsets) {
-                binding.myMapView.safeAreaInsets = Rect(0, 0, 0, binding.myMapView.height / 2)
+                mapView.safeAreaInsets = Rect(0, 0, 0, mapView.height / 2)
             }
 
             if (centreOnDaeva) {
                 val daeva = AttractionManager.thrillAttractions[0]
 
-                binding.myMapView.moveCamera(
+                mapView.moveCamera(
                     coordinates = GeographicCoordinate(daeva.latitude, daeva.longitude),
                     span = 0.0
                 )
             }
         }
-
-        setContentView(binding.root)
     }
 
     override fun onPause() {
@@ -249,6 +273,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        _binding = null
+        mapViewVariable = null
     }
 }
