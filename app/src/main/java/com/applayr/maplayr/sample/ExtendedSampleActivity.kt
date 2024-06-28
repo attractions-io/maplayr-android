@@ -111,7 +111,7 @@ class ExtendedSampleActivity : AppCompatActivity() {
                                 // Animate the camera
                                 // Compute the smallest circle that covers the start coordinate, the destination coordinate and all the points along the route
                                 val pointsAlongRoute = route.pointsAlongRoute.map { mapPoint ->
-                                    mapContext.geographicProjection.mapPointToGeographic(mapPoint)
+                                    mapContext.mapProjection.mapPointToGeographic(mapPoint)
                                 }
 
                                 val enclosingCircle = mapView.computeSmallestCircle(
