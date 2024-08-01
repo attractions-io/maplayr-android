@@ -1,30 +1,33 @@
 package com.applayr.maplayr.sample
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.Rect
-import android.location.Location
 import android.os.Bundle
-import android.os.Looper
 import android.view.View
 import android.widget.TextView
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.doOnLayout
+import com.applayr.maplayr.CameraTarget
 import com.applayr.maplayr.MapView
 import com.applayr.maplayr.androidLayer.annotation.CoordinateAnnotationLayer
+import com.applayr.maplayr.location.google.GoogleLocationId
 import com.applayr.maplayr.model.coordinate.GeographicCoordinate
+import com.applayr.maplayr.model.coordinate.DestinationProvider
 import com.applayr.maplayr.model.map.Map
+import com.applayr.maplayr.model.opengl.journey.Journey
 import com.applayr.maplayr.model.opengl.locationmarker.LocationMarker
+import com.applayr.maplayr.model.opengl.route.AnimatingShapedRoute
 import com.applayr.maplayr.model.opengl.shapes.Shape
+import com.applayr.maplayr.model.routes.AnimatingRoute
 import com.applayr.maplayr.sample.data.annotationlayer.AnnotationLayerAdapter
 import com.applayr.maplayr.sample.data.model.Attraction
 import com.applayr.maplayr.sample.data.model.AttractionManager
-import com.google.android.gms.location.*
+import kotlin.math.PI
 
 class ExtendedSampleActivity : AppCompatActivity() {
 
@@ -32,15 +35,6 @@ class ExtendedSampleActivity : AppCompatActivity() {
 
     private val mapView: MapView
         get() = mapViewVariable ?: throw Exception("Map view not initialised")
-
-    // Location marker
-    private lateinit var locationMarker: LocationMarker
-
-    // Location updates
-    private var fusedLocationClient: FusedLocationProviderClient? = null
-    private var locationRequest: LocationRequest? = null
-    private var locationCallback: LocationCallback? = null
-    private var currentLocation: Location? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,87 +61,71 @@ class ExtendedSampleActivity : AppCompatActivity() {
             insert(AttractionManager.thrillAttractions)
         }
 
-        mapView.mapContextLiveData.observe(mapView) { mapContext ->
-            mapContext ?: return@observe
+        coordinateAnnotationLayer.listener = object : CoordinateAnnotationLayer.Listener<Attraction> {
 
-            mapView.shapes = listOf()
+            override fun didDeselectAnnotation(
+                element: Attraction,
+                coordinateAnnotationLayer: CoordinateAnnotationLayer<Attraction>
+            ) {
+                mapView.removeAllJourneys()
+            }
 
-            coordinateAnnotationLayer.listener = object : CoordinateAnnotationLayer.Listener<Attraction> {
+            override fun didSelectAnnotation(
+                element: Attraction,
+                coordinateAnnotationLayer: CoordinateAnnotationLayer<Attraction>
+            ) {
 
-                override fun didDeselectAnnotation(
-                    element: Attraction,
-                    coordinateAnnotationLayer: CoordinateAnnotationLayer<Attraction>
-                ) {
-                    mapView.shapes = listOf()
-                }
+                /* ---------- ---------- ---------- ---------- ---------- */
+                /* -- Route Calculation -- */
+                /* ---------- ---------- ---------- ---------- ---------- */
 
-                override fun didSelectAnnotation(
-                    element: Attraction,
-                    coordinateAnnotationLayer: CoordinateAnnotationLayer<Attraction>
-                ) {
+                mapView.removeAllJourneys()
 
-                    /* ---------- ---------- ---------- ---------- ---------- */
-                    /* -- Route Calculation -- */
-                    /* ---------- ---------- ---------- ---------- ---------- */
+                val journey = Journey(
+                    from = DestinationProvider(GoogleLocationId.HighAccuracy),
+                    to = listOf(DestinationProvider(GeographicCoordinate(element.latitude, element.longitude))),
+                    options = Journey.Options(
+                        listener = object : (AnimatingRoute?) -> Unit {
 
-                    currentLocation?.let { currentLocation ->
+                            private var shownError = false
+                            private var readyToShowError = true
 
-                        if (mapContext.isLocationInBounds(currentLocation)) {
-
-                            // Calculate the route from the user's current location to the selected element
-                            val route = mapContext.pathNetwork?.calculateDirections(
-                                GeographicCoordinate(currentLocation.latitude, currentLocation.longitude),
-                                listOf(GeographicCoordinate(element.latitude, element.longitude))
-                            )
-
-                            // If the route is available add an outlined shape representing the route to the map and move the camera
-                            route?.let { route ->
-                                // Add shapes to the map
-                                val outline = Shape(route.path, Color.BLUE, 4f)
-                                val inner = Shape(route.path, Color.WHITE, 2f)
-
-                                mapView.shapes = listOf(outline, inner)
-
-                                // Animate the camera
-                                // Compute the smallest circle that covers the start coordinate, the destination coordinate and all the points along the route
-                                val pointsAlongRoute = route.pointsAlongRoute.map { mapPoint ->
-                                    mapContext.mapProjection.mapPointToGeographic(mapPoint)
+                            override fun invoke(animatingRoute: AnimatingRoute?) {
+                                if (animatingRoute == null) {
+                                    if (!shownError) {
+                                        shownError = true
+                                        if (readyToShowError) {
+                                            readyToShowError = false
+                                            // Show an off resort error
+                                            AlertDialog.Builder(this@ExtendedSampleActivity)
+                                                .setTitle("Error")
+                                                .setMessage("Unable to create route whilst you're not on resort")
+                                                .setNeutralButton("Ok") { _, _ -> readyToShowError = true }
+                                                .show()
+                                        }
+                                    }
+                                } else {
+                                    shownError = false
                                 }
-
-                                val enclosingCircle = mapView.computeSmallestCircle(
-                                    pointsAlongRoute + listOf(
-                                        GeographicCoordinate(
-                                            currentLocation.latitude,
-                                            currentLocation.longitude
-                                        ), // Start of the route
-                                        GeographicCoordinate(
-                                            element.latitude,
-                                            element.longitude
-                                        ), // Destination of the route
-                                    )
-                                )
-
-                                // Set the camera position to view the route
-                                mapView.moveCamera(
-                                    enclosingCircle?.center,
-                                    null,
-                                    enclosingCircle?.span,
-                                    0.0,
-                                    Math.toRadians(30.0),
-                                    true
-                                )
                             }
-                        } else {
-                            // Show an off resort error
-                            AlertDialog.Builder(this@ExtendedSampleActivity)
-                                .setTitle("Error")
-                                .setMessage("Unable to create route whilst you're not on resort")
-                                .setNeutralButton("Ok", null)
-                                .show()
-
+                        },
+                        animatingRouteShaper = { animatingRoute ->
+                            AnimatingShapedRoute(
+                                animatingRoute = animatingRoute,
+                                shapes = listOf(
+                                    Shape(animatingRoute.route.path, Color.BLUE, 4f),
+                                    Shape(animatingRoute.route.path, Color.WHITE, 2f)
+                                )
+                            )
                         }
-                    }
-                }
+                    )
+                )
+                mapView.addJourney(journey)
+                mapView.moveCamera(
+                    journey = journey,
+                    tilt = Math.toRadians(30.0),
+                    animated = true
+                )
             }
         }
 
@@ -159,39 +137,34 @@ class ExtendedSampleActivity : AppCompatActivity() {
         /* ---------- ---------- ---------- ---------- ---------- */
 
         // Create a location marker and add it to the map view
-        locationMarker = LocationMarker()
+        val locationMarker = LocationMarker(GoogleLocationId.HighAccuracy)
 
         mapView.addLocationMarker(locationMarker)
 
-        /* -- Location permissions & location updates -- */
-        // Get the FusedLocationProviderClient
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-
         // Check to see if the user has granted at least the COARSE_LOCATION permission (approximate location)
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // Request foreground location permissions
-            val locationPermissionRequest = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
-                if (permissions[Manifest.permission.ACCESS_COARSE_LOCATION] == true) {
-                    setUpLocationClient()
-                }
-            }
-
-            locationPermissionRequest.launch(arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION))
-        } else {
-            setUpLocationClient()
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION), 0)
         }
 
         /* ---------- ---------- ---------- ---------- ---------- */
         /* -- Initial Camera Position -- */
         /* ---------- ---------- ---------- ---------- ---------- */
 
-        // Compute the smallest circle that covers all of the thrill attractions
-        val enclosingCircle = mapView.computeSmallestCircle(AttractionManager.thrillAttractions.map { attraction ->
-            GeographicCoordinate(attraction.latitude, attraction.longitude)
-        })
-
-        // Set the initial camera position to view all of the thrill attractions
-        mapView.moveCamera(enclosingCircle?.center, null, enclosingCircle?.span, 0.0, Math.toRadians(45.0), false)
+        // Set the initial camera position to current user location and fallback to view all of the thrill attractions
+        mapView.moveCamera(
+            CameraTarget.LocationId(
+                locationId = GoogleLocationId.HighAccuracy,
+                tilt = PI / 4,
+                span = 75.0,
+                fallback = CameraTarget.ResolvableDestinations(
+                    geographicCoordinateProviders = AttractionManager.thrillAttractions.map { attraction -> GeographicCoordinate(attraction.latitude, attraction.longitude) },
+                    headingDegrees = Math.toRadians(45.0),
+                    insets = 0.0,
+                    tilt = 0.0,
+                )
+            ),
+            animated = false
+        )
 
         /* ---------- ---------- ---------- ---------- ---------- */
         /* -- Safe Area Insets -- */
@@ -216,58 +189,6 @@ class ExtendedSampleActivity : AppCompatActivity() {
                     span = 0.0
                 )
             }
-        }
-    }
-
-    override fun onPause() {
-        super.onPause()
-        // Stop requesting location updates
-        stopLocationUpdates()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        // Start requesting location updates
-        startLocationUpdates()
-    }
-
-    @SuppressLint("MissingPermission") // This will only be called if foreground location permissions have been approved
-    private fun setUpLocationClient() {
-        // Request high accuracy location updates every second
-        locationRequest = LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 1_000).build()
-
-        // Assign the callback. This is triggered when the location updates so we can update the locationMarker's location.
-        locationCallback = object : LocationCallback() {
-            override fun onLocationResult(locationResult: LocationResult) {
-                locationResult.lastLocation?.let { location ->
-                    currentLocation = location
-                    locationMarker.location = currentLocation
-                }
-            }
-        }
-
-        fusedLocationClient?.let { locationClient ->
-            // Get the last location to initially set the locationMarker's position
-            locationClient.lastLocation.addOnSuccessListener { location: Location? ->
-                currentLocation = location
-                locationMarker.location = currentLocation
-            }
-        }
-    }
-
-    @SuppressLint("MissingPermission") // This will only be called if foreground location permissions have been approved
-    private fun startLocationUpdates() {
-        locationRequest?.let { request ->
-            locationCallback?.let { callback ->
-                // Request location updates with the request and callback above
-                fusedLocationClient?.requestLocationUpdates(request, callback, Looper.getMainLooper())
-            }
-        }
-    }
-
-    private fun stopLocationUpdates() {
-        locationCallback?.let { callback ->
-            fusedLocationClient?.removeLocationUpdates(callback)
         }
     }
 
