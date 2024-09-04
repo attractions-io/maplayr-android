@@ -122,8 +122,11 @@ class ExtendedSampleActivity : AppCompatActivity() {
                 )
                 mapView.addJourney(journey)
                 mapView.moveCamera(
-                    journey = journey,
-                    tilt = Math.toRadians(30.0),
+                    cameraTarget = CameraTarget.Journey(
+                        journey = journey,
+                        tilt = Math.toRadians(30.0),
+                        fallback = CameraTarget.Stationary
+                    ),
                     animated = true
                 )
             }
