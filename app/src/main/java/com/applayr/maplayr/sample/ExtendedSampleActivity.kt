@@ -62,7 +62,9 @@ class ExtendedSampleActivity : AppCompatActivity() {
         val annotationLayerAdapter = AnnotationLayerAdapter()
 
         // Create the CoordinateAnnotationLayer and add the annotations to it
-        val coordinateAnnotationLayer = CoordinateAnnotationLayer(this, annotationLayerAdapter)
+        val coordinateAnnotationLayer = CoordinateAnnotationLayer(this, annotationLayerAdapter).apply {
+            insert(AttractionManager.thrillAttractions)
+        }
 
         coordinateAnnotationLayer.listener = object : CoordinateAnnotationLayer.Listener<Attraction> {
 
@@ -197,34 +199,13 @@ class ExtendedSampleActivity : AppCompatActivity() {
             }
         }
 
-
-        val coordinateAnnotationLayerWeakReference = WeakReference(coordinateAnnotationLayer)
-
         object: Runnable {
 
             private val handler = Handler(Looper.getMainLooper())
 
-            private val thrillAttractions = AttractionManager.thrillAttractions.toMutableList()
-
-            init {
-                coordinateAnnotationLayer.insert(thrillAttractions)
-            }
-
             override fun run() {
-                val coordinateAnnotationLayer = coordinateAnnotationLayerWeakReference.get() ?: return
-
-                val randomThrillAttraction = thrillAttractions.random()
-
-                thrillAttractions.remove(randomThrillAttraction)
-                coordinateAnnotationLayer.remove(randomThrillAttraction)
-
                 val queueTimeMinutes = Random.nextInt(0, 30)
-
-                val newThrillAttraction = randomThrillAttraction.copy(queueTimeMinutes = if (queueTimeMinutes > 5) queueTimeMinutes else null)
-
-                thrillAttractions.add(newThrillAttraction)
-                coordinateAnnotationLayer.insert(newThrillAttraction)
-
+                AttractionManager.thrillAttractions.random().queueTimeHandler.setQueueTime(if (queueTimeMinutes > 5) queueTimeMinutes else null)
                 handler.postDelayed(this, TimeUnit.SECONDS.toMillis(5))
             }
         }.run()

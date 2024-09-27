@@ -11,6 +11,7 @@ import com.applayr.maplayr.androidLayer.annotation.CoordinateAnnotationViewHolde
 import com.applayr.maplayr.androidLayer.annotation.defaultAnnotation.LabeledAnnotationIcon
 import com.applayr.maplayr.model.coordinate.GeographicCoordinate
 import com.applayr.maplayr.sample.data.model.Attraction
+import com.applayr.maplayr.sample.data.model.QueueTimeTextView
 
 class AnnotationLayerAdapter : CoordinateAnnotationLayer.Adapter<Attraction> {
 
@@ -27,7 +28,7 @@ class AnnotationLayerAdapter : CoordinateAnnotationLayer.Adapter<Attraction> {
             this@LabeledAnnotationIconWithQueueTime.addView(this)
         }
 
-        val queueTimeTextView = TextView(context).apply {
+        val queueTimeTextView = QueueTimeTextView(context).apply {
             layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
             setBackgroundColor(Color.BLACK)
             this@LabeledAnnotationIconWithQueueTime.addView(this)
@@ -49,14 +50,7 @@ class AnnotationLayerAdapter : CoordinateAnnotationLayer.Adapter<Attraction> {
 
         (labeledAnnotationIcon.labeledAnnotationIcon.annotationIcon as ImageView).setImageResource(element.iconImage)
 
-        if (element.queueTimeMinutes != null) {
-            labeledAnnotationIcon.queueTimeTextView.visibility = TextView.VISIBLE
-            labeledAnnotationIcon.queueTimeTextView.text = "${element.queueTimeMinutes} min"
-        } else {
-            labeledAnnotationIcon.queueTimeTextView.visibility = TextView.GONE
-            labeledAnnotationIcon.queueTimeTextView.text = null
-        }
-
+        element.queueTimeHandler.attachTextView(labeledAnnotationIcon.queueTimeTextView)
     }
 
     // Provide the geographic coordinate for a given `Attraction`
