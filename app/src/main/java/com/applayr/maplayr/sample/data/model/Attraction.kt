@@ -4,7 +4,8 @@ data class Attraction(
     val name: String,
     val latitude: Double,
     val longitude: Double,
-    val iconImage: Int
+    val iconImage: Int,
+    val queueTimeMinutes: Int?
 ) {
 
     override fun toString() = name

@@ -5,6 +5,8 @@ import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.Rect
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
@@ -27,7 +29,10 @@ import com.applayr.maplayr.model.routes.AnimatingRoute
 import com.applayr.maplayr.sample.data.annotationlayer.AnnotationLayerAdapter
 import com.applayr.maplayr.sample.data.model.Attraction
 import com.applayr.maplayr.sample.data.model.AttractionManager
+import java.lang.ref.WeakReference
+import java.util.concurrent.TimeUnit
 import kotlin.math.PI
+import kotlin.random.Random
 
 class ExtendedSampleActivity : AppCompatActivity() {
 
@@ -57,9 +62,7 @@ class ExtendedSampleActivity : AppCompatActivity() {
         val annotationLayerAdapter = AnnotationLayerAdapter()
 
         // Create the CoordinateAnnotationLayer and add the annotations to it
-        val coordinateAnnotationLayer = CoordinateAnnotationLayer(this, annotationLayerAdapter).apply {
-            insert(AttractionManager.thrillAttractions)
-        }
+        val coordinateAnnotationLayer = CoordinateAnnotationLayer(this, annotationLayerAdapter)
 
         coordinateAnnotationLayer.listener = object : CoordinateAnnotationLayer.Listener<Attraction> {
 
@@ -193,6 +196,38 @@ class ExtendedSampleActivity : AppCompatActivity() {
                 )
             }
         }
+
+
+        val coordinateAnnotationLayerWeakReference = WeakReference(coordinateAnnotationLayer)
+
+        object: Runnable {
+
+            private val handler = Handler(Looper.getMainLooper())
+
+            private val thrillAttractions = AttractionManager.thrillAttractions.toMutableList()
+
+            init {
+                coordinateAnnotationLayer.insert(thrillAttractions)
+            }
+
+            override fun run() {
+                val coordinateAnnotationLayer = coordinateAnnotationLayerWeakReference.get() ?: return
+
+                val randomThrillAttraction = thrillAttractions.random()
+
+                thrillAttractions.remove(randomThrillAttraction)
+                coordinateAnnotationLayer.remove(randomThrillAttraction)
+
+                val queueTimeMinutes = Random.nextInt(0, 30)
+
+                val newThrillAttraction = randomThrillAttraction.copy(queueTimeMinutes = if (queueTimeMinutes > 5) queueTimeMinutes else null)
+
+                thrillAttractions.add(newThrillAttraction)
+                coordinateAnnotationLayer.insert(newThrillAttraction)
+
+                handler.postDelayed(this, TimeUnit.SECONDS.toMillis(5))
+            }
+        }.run()
     }
 
     override fun onDestroy() {
