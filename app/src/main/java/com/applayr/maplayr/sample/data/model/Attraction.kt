@@ -7,5 +7,7 @@ data class Attraction(
     val iconImage: Int
 ) {
 
+    val queueTimeHandler = QueueTimeHandler()
+
     override fun toString() = name
 }

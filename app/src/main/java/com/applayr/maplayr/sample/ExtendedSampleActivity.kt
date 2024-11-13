@@ -5,6 +5,8 @@ import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.Rect
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
@@ -27,7 +29,10 @@ import com.applayr.maplayr.model.routes.AnimatingRoute
 import com.applayr.maplayr.sample.data.annotationlayer.AnnotationLayerAdapter
 import com.applayr.maplayr.sample.data.model.Attraction
 import com.applayr.maplayr.sample.data.model.AttractionManager
+import java.lang.ref.WeakReference
+import java.util.concurrent.TimeUnit
 import kotlin.math.PI
+import kotlin.random.Random
 
 class ExtendedSampleActivity : AppCompatActivity() {
 
@@ -193,6 +198,17 @@ class ExtendedSampleActivity : AppCompatActivity() {
                 )
             }
         }
+
+        object: Runnable {
+
+            private val handler = Handler(Looper.getMainLooper())
+
+            override fun run() {
+                val queueTimeMinutes = Random.nextInt(0, 30)
+                AttractionManager.thrillAttractions.random().queueTimeHandler.setQueueTime(if (queueTimeMinutes > 5) queueTimeMinutes else null)
+                handler.postDelayed(this, TimeUnit.SECONDS.toMillis(5))
+            }
+        }.run()
     }
 
     override fun onDestroy() {
