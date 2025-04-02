@@ -7,8 +7,8 @@ import android.widget.ImageView
 import com.applayr.maplayr.androidLayer.annotation.CoordinateAnnotationLayer
 import com.applayr.maplayr.androidLayer.annotation.CoordinateAnnotationViewHolder
 import com.applayr.maplayr.androidLayer.annotation.defaultAnnotation.LabeledAnnotationIcon
-import com.applayr.maplayr.model.coordinate.GeographicCoordinate
 import com.applayr.maplayr.sample.data.model.Attraction
+import com.applayr.positionlayr.model.coordinate.GeographicCoordinate
 
 class AnnotationLayerAdapter : CoordinateAnnotationLayer.Adapter<Attraction> {
 

@@ -15,8 +15,6 @@ import androidx.core.view.doOnLayout
 import com.applayr.maplayr.CameraTarget
 import com.applayr.maplayr.MapView
 import com.applayr.maplayr.androidLayer.annotation.CoordinateAnnotationLayer
-import com.applayr.maplayr.location.google.GoogleLocationId
-import com.applayr.maplayr.model.coordinate.GeographicCoordinate
 import com.applayr.maplayr.model.coordinate.DestinationProvider
 import com.applayr.maplayr.model.map.Map
 import com.applayr.maplayr.model.opengl.journey.Journey
@@ -27,6 +25,8 @@ import com.applayr.maplayr.model.routes.AnimatingRoute
 import com.applayr.maplayr.sample.data.annotationlayer.AnnotationLayerAdapter
 import com.applayr.maplayr.sample.data.model.Attraction
 import com.applayr.maplayr.sample.data.model.AttractionManager
+import com.applayr.positionlayr.google.GoogleLocationId
+import com.applayr.positionlayr.model.coordinate.GeographicCoordinate
 import kotlin.math.PI
 
 class ExtendedSampleActivity : AppCompatActivity() {
@@ -160,7 +160,9 @@ class ExtendedSampleActivity : AppCompatActivity() {
                 tilt = PI / 4,
                 span = 75.0,
                 fallback = CameraTarget.ResolvableDestinations(
-                    geographicCoordinateProviders = AttractionManager.thrillAttractions.map { attraction -> GeographicCoordinate(attraction.latitude, attraction.longitude) },
+                    geographicCoordinateProviders = AttractionManager.thrillAttractions.map { attraction ->
+                        GeographicCoordinate(attraction.latitude, attraction.longitude)
+                    },
                     headingDegrees = Math.toRadians(45.0),
                     insets = 0.0,
                     tilt = 0.0,

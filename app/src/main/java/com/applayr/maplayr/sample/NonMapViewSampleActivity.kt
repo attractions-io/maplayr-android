@@ -3,9 +3,9 @@ package com.applayr.maplayr.sample
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.applayr.maplayr.livedata.LifecycleOwner
-import com.applayr.maplayr.livedata.LifecycleOwnerImpl
-import com.applayr.maplayr.livedata.zipWith
+import com.applayr.livedata.LifecycleOwner
+import com.applayr.livedata.LifecycleOwnerImpl
+import com.applayr.livedata.zipWith
 import com.applayr.maplayr.model.map.DownloadResult
 import com.applayr.maplayr.model.map.Map
 
