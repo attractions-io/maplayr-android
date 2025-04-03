@@ -77,6 +77,6 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     // Attractions.io MapView
-    implementation "com.applayr:maplayr:0.0.58"
-    implementation "com.applayr:positionlayr-google:0.0.58"
+    implementation "com.applayr:maplayr:0.0.59"
+    implementation "com.applayr:positionlayr-google:0.0.59"
 }

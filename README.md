@@ -65,7 +65,7 @@ Add the MapLayr plugin class path to Gradle:
 ```Groovy
 buildscript {
     dependencies {
-        classpath 'com.applayr:maplayr-plugin:0.0.58'
+        classpath 'com.applayr:maplayr-plugin:0.0.59'
     }
 }
 ```
@@ -185,7 +185,7 @@ An example can be found here: [build.gradle](app/build.gradle#L10-L16)
 
 ```Groovy
 dependencies {
-    implementation "com.applayr:maplayr:0.0.58"
+    implementation "com.applayr:maplayr:0.0.59"
 }
 ```
 
