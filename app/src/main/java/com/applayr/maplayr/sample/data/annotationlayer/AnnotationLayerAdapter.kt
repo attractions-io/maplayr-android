@@ -13,15 +13,17 @@ import com.applayr.positionlayr.model.coordinate.GeographicCoordinate
 class AnnotationLayerAdapter : CoordinateAnnotationLayer.Adapter<Attraction> {
 
     // Define a CoordinateAnnotationViewHolder containing a LabeledAnnotationIcon
-    class LabeledAnnotationIconViewHolder(view: LabeledAnnotationIcon) : CoordinateAnnotationViewHolder(view)
+    class LabeledAnnotationIconViewHolder(view: SubclassOfLabeledAnnotationIcon) : CoordinateAnnotationViewHolder(view)
 
     // Create an instance of the LabeledAnnotationIconViewHolder
-    override fun createView(parent: ViewGroup, viewType: Int) = LabeledAnnotationIconViewHolder(LabeledAnnotationIcon(parent.context))
+    override fun createView(parent: ViewGroup, viewType: Int) = LabeledAnnotationIconViewHolder(SubclassOfLabeledAnnotationIcon(parent.context))
 
     // Bind the data for a given `Attraction` to the LabeledAnnotationIcon
     override fun bindView(coordinateAnnotationViewHolder: CoordinateAnnotationViewHolder, element: Attraction) {
 
-        val labeledAnnotationIcon = coordinateAnnotationViewHolder.view as LabeledAnnotationIcon
+        val labeledAnnotationIcon = coordinateAnnotationViewHolder.view as SubclassOfLabeledAnnotationIcon
+
+        labeledAnnotationIcon.geographicCoordinate = GeographicCoordinate(element.latitude, element.longitude)
 
         labeledAnnotationIcon.labelTextColor = ColorStateList.valueOf(Color.BLACK)
 
