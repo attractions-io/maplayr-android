@@ -65,7 +65,7 @@ Add the MapLayr plugin class path to Gradle:
 ```Groovy
 buildscript {
     dependencies {
-        classpath 'com.applayr:maplayr-plugin:0.0.62'
+        classpath 'com.applayr:maplayr-plugin:0.0.64'
     }
 }
 ```
@@ -185,7 +185,7 @@ An example can be found here: [build.gradle](app/build.gradle#L10-L16)
 
 ```Groovy
 dependencies {
-    implementation "com.applayr:maplayr:0.0.62"
+    implementation "com.applayr:maplayr:0.0.64"
 }
 ```
 
@@ -207,7 +207,7 @@ To display an interactive map on the screen, you must first get a managed `Map` 
 
 ```Kotlin
 try {
-    val map = Map.managed(applicationContext, "5a1400cf-db2b-4dec-90f2-8f603cab4e72")
+    val map = Map.managed("5a1400cf-db2b-4dec-90f2-8f603cab4e72")
 
     mapView.map = map
 

@@ -48,7 +48,7 @@ class ExtendedSampleActivity : AppCompatActivity() {
         /* ---------- ---------- ---------- ---------- ---------- */
 
         // Load the map metadata and assign it to the map view
-        mapView.setMap(Map.managed(applicationContext, BuildConfig.MAPLAYR_MAP))
+        mapView.setMap(Map.managed(BuildConfig.MAPLAYR_MAP))
 
         /* ---------- ---------- ---------- ---------- ---------- */
         /* -- Annotation layer -- */

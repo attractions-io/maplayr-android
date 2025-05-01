@@ -23,7 +23,6 @@ class NonMapViewSampleActivity : AppCompatActivity() {
         this.lifecycleOwner = lifecycleOwner
 
         val map = Map.managed(
-            context = applicationContext,
             idString = "df98bfa3-156c-49cb-9f94-1b9ec52a08c4"
         )
 

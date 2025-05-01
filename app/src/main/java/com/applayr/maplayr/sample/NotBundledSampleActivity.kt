@@ -16,7 +16,7 @@ class NotBundledSampleActivity : AppCompatActivity() {
 
         val mapView = findViewById<MapView>(R.id.map_view)
 
-        mapView.setMap(Map.managed(context = applicationContext, idString = "df98bfa3-156c-49cb-9f94-1b9ec52a08c4"))
+        mapView.setMap(Map.managed(idString = "df98bfa3-156c-49cb-9f94-1b9ec52a08c4"))
 
         mapView.isVisible = false
 
