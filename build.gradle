@@ -7,7 +7,7 @@ buildscript {
         }
 
         maven {
-            url = "https://maven.pkg.github.com/applayr/MapLayr-Android"
+            url = "https://maven.pkg.github.com/attractions-io/maplayr-android"
 //            credentials {
 //                username "GitHub username here"
 //                password "Github token with packages read access here"
@@ -15,7 +15,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.applayr:maplayr-plugin:0.0.67'
+        classpath 'io.attractions:maplayr-plugin:0.0.86'
         classpath 'com.android.tools.build:gradle:8.3.2'
         classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:2.0.0'
     }

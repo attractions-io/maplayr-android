@@ -1,0 +1,24 @@
+:root  > * {
+  --md-primary-fg-color: #667FFF;
+}
+
+.md-header {
+  background-color: #1D1E27;
+  color: #667FFF;
+}
+
+.md-tabs {
+  background-color: #1D1E27;
+}
+
+.md-tabs__item:hover {
+  color: #4D5166;
+}
+
+.md-tabs__item {
+  color: #8E9099;
+}
+
+.md-tabs__item--active {
+  color: #667FFF;
+}

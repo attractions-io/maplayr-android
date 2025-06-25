@@ -1,0 +1,281 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>MapContext</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+<a class="library-name--link" href="../../../index.html">
+                    Attractions.io MapLayr
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":applayr:maplayr:dokkaHtmlPartial/release">androidJvm</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":applayr:maplayr:dokkaHtmlPartial/release" data-filter=":applayr:maplayr:dokkaHtmlPartial/release">
+                                <span class="checkbox--icon"></span>
+                                androidJvm
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    Attractions.io MapLayr
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="maplayr::io.attractions.maplayr.context/MapContext///PointingToDeclaration//-1043924762">
+  <div class="breadcrumbs"><a href="../../index.html">maplayr</a><span class="delimiter">/</span><a href="../index.html">io.attractions.maplayr.context</a><span class="delimiter">/</span><span class="current">MapContext</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Map</span><wbr><span><span>Context</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":applayr:maplayr:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">interface </span><a href="index.html">MapContext</a></div><h4 class="">Inheritors</h4><div class="table"><div class="table-row" data-filterable-current=":applayr:maplayr:dokkaHtmlPartial/release" data-filterable-set=":applayr:maplayr:dokkaHtmlPartial/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-map-version-context/index.html">MapVersionContext</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":applayr:maplayr:dokkaHtmlPartial/release" data-filterable-set=":applayr:maplayr:dokkaHtmlPartial/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-map-view-context/index.html">MapViewContext</a></div></span></div><div></div></div></div></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="-697733166%2FClasslikes%2F-1043924762" anchor-label="Companion" id="-697733166%2FClasslikes%2F-1043924762" data-filterable-set=":applayr:maplayr:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":applayr:maplayr:dokkaHtmlPartial/release" data-filterable-set=":applayr:maplayr:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-companion/index.html"><span><span>Companion</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-697733166%2FClasslikes%2F-1043924762"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":applayr:maplayr:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">object </span><a href="-companion/index.html">Companion</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="-681315769%2FProperties%2F-1043924762" anchor-label="auxiliaryTerrains" id="-681315769%2FProperties%2F-1043924762" data-filterable-set=":applayr:maplayr:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":applayr:maplayr:dokkaHtmlPartial/release" data-filterable-set=":applayr:maplayr:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="auxiliary-terrains.html"><span>auxiliary</span><wbr><span><span>Terrains</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-681315769%2FProperties%2F-1043924762"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":applayr:maplayr:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="auxiliary-terrains.html">auxiliaryTerrains</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-map/index.html">Map</a><span class="token operator">&lt;</span><a href="../../io.attractions.maplayr.model.opengl.level/-terrain-id/-auxiliary/index.html">TerrainId.Auxiliary</a><span class="token punctuation">, </span><a href="../../io.attractions.maplayr.model.map/-terrain/index.html">Terrain</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2029276972%2FProperties%2F-1043924762" anchor-label="buildings" id="2029276972%2FProperties%2F-1043924762" data-filterable-set=":applayr:maplayr:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":applayr:maplayr:dokkaHtmlPartial/release" data-filterable-set=":applayr:maplayr:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="buildings.html"><span><span>buildings</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2029276972%2FProperties%2F-1043924762"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":applayr:maplayr:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="buildings.html">buildings</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-set/index.html">Set</a><span class="token operator">&lt;</span><a href="../../io.attractions.maplayr.model.map/-building/index.html">Building</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1315639260%2FProperties%2F-1043924762" anchor-label="colorTransformationMode" id="1315639260%2FProperties%2F-1043924762" data-filterable-set=":applayr:maplayr:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":applayr:maplayr:dokkaHtmlPartial/release" data-filterable-set=":applayr:maplayr:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-transformation-mode.html"><span>color</span><wbr><span>Transformation</span><wbr><span><span>Mode</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1315639260%2FProperties%2F-1043924762"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":applayr:maplayr:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="color-transformation-mode.html">colorTransformationMode</a><span class="token operator">: </span><a href="../../io.attractions.maplayr.model.opengl.colortransformation/-color-transformation-mode/index.html">ColorTransformationMode</a><span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1398597506%2FProperties%2F-1043924762" anchor-label="coordinateBounds" id="1398597506%2FProperties%2F-1043924762" data-filterable-set=":applayr:maplayr:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":applayr:maplayr:dokkaHtmlPartial/release" data-filterable-set=":applayr:maplayr:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="coordinate-bounds.html"><span>coordinate</span><wbr><span><span>Bounds</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1398597506%2FProperties%2F-1043924762"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":applayr:maplayr:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="coordinate-bounds.html">coordinateBounds</a><span class="token operator">: </span><a href="../../io.attractions.maplayr.model.map/-coordinate-bounds/index.html">CoordinateBounds</a><span class="token operator">&lt;</span><a href="../../io.attractions.maplayr.model.coordinate/-map-point/index.html">MapPoint</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1487842693%2FProperties%2F-1043924762" anchor-label="defaultTerrain" id="-1487842693%2FProperties%2F-1043924762" data-filterable-set=":applayr:maplayr:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":applayr:maplayr:dokkaHtmlPartial/release" data-filterable-set=":applayr:maplayr:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="default-terrain.html"><span>default</span><wbr><span><span>Terrain</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1487842693%2FProperties%2F-1043924762"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":applayr:maplayr:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="default-terrain.html">defaultTerrain</a><span class="token operator">: </span><a href="../../io.attractions.maplayr.model.map/-terrain/index.html">Terrain</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="543099215%2FProperties%2F-1043924762" anchor-label="lightsMode" id="543099215%2FProperties%2F-1043924762" data-filterable-set=":applayr:maplayr:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":applayr:maplayr:dokkaHtmlPartial/release" data-filterable-set=":applayr:maplayr:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="lights-mode.html"><span>lights</span><wbr><span><span>Mode</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="543099215%2FProperties%2F-1043924762"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":applayr:maplayr:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="lights-mode.html">lightsMode</a><span class="token operator">: </span><a href="../../io.attractions.maplayr.model.opengl.colortransformation/-lights-mode/index.html">LightsMode</a><span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1491195616%2FProperties%2F-1043924762" anchor-label="mapProjection" id="-1491195616%2FProperties%2F-1043924762" data-filterable-set=":applayr:maplayr:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":applayr:maplayr:dokkaHtmlPartial/release" data-filterable-set=":applayr:maplayr:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="map-projection.html"><span>map</span><wbr><span><span>Projection</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1491195616%2FProperties%2F-1043924762"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":applayr:maplayr:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="map-projection.html">mapProjection</a><span class="token operator">: </span><a href="../../io.attractions.maplayr.model.coordinate.projection/-map-projection/index.html">MapProjection</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="971541730%2FProperties%2F-1043924762" anchor-label="pathNetwork" id="971541730%2FProperties%2F-1043924762" data-filterable-set=":applayr:maplayr:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":applayr:maplayr:dokkaHtmlPartial/release" data-filterable-set=":applayr:maplayr:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="path-network.html"><span>path</span><wbr><span><span>Network</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="971541730%2FProperties%2F-1043924762"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":applayr:maplayr:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="path-network.html">pathNetwork</a><span class="token operator">: </span><a href="../../io.attractions.maplayr.model.routes/-path-network/index.html">PathNetwork</a><span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-963809219%2FFunctions%2F-1043924762" anchor-label="isLocationInBounds" id="-963809219%2FFunctions%2F-1043924762" data-filterable-set=":applayr:maplayr:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":applayr:maplayr:dokkaHtmlPartial/release" data-filterable-set=":applayr:maplayr:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-location-in-bounds.html"><span>is</span><wbr><span>Location</span><wbr><span>In</span><wbr><span><span>Bounds</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-963809219%2FFunctions%2F-1043924762"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":applayr:maplayr:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="is-location-in-bounds.html"><span class="token function">isLocationInBounds</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">location<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/location/Location.html">Location</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>© 2025 Copyright</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

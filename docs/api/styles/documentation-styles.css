@@ -1,0 +1,9 @@
+:root {
+    --dokka-logo-image-url: url('../images/maplayr-icon.svg');
+    --dokka-logo-height: 28px;
+    --dokka-logo-width: 28px;
+}
+
+.navigation.theme-dark {
+    background-color: #0E1016;
+}
