@@ -8,7 +8,7 @@ import io.attractions.maplayr.androidLayer.annotation.CoordinateAnnotationLayer
 import io.attractions.maplayr.androidLayer.annotation.CoordinateAnnotationViewHolder
 import io.attractions.maplayr.androidLayer.annotation.defaultAnnotation.LabeledAnnotationIcon
 import io.attractions.maplayr.sample.data.model.Attraction
-import io.attractions.positionlayr.model.coordinate.GeographicCoordinate
+import io.attractions.positioning.model.coordinate.GeographicCoordinate
 
 class AnnotationLayerAdapter : CoordinateAnnotationLayer.Adapter<Attraction> {
 

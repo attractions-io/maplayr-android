@@ -25,8 +25,8 @@ import io.attractions.maplayr.model.routes.AnimatingRoute
 import io.attractions.maplayr.sample.data.annotationlayer.AnnotationLayerAdapter
 import io.attractions.maplayr.sample.data.model.Attraction
 import io.attractions.maplayr.sample.data.model.AttractionManager
-import io.attractions.positionlayr.google.GoogleLocationId
-import io.attractions.positionlayr.model.coordinate.GeographicCoordinate
+import io.attractions.positioning.google.GoogleLocationId
+import io.attractions.positioning.model.coordinate.GeographicCoordinate
 import kotlin.math.PI
 
 class ExtendedSampleActivity : AppCompatActivity() {
