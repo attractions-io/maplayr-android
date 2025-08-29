@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../user_location_marker/">
+        <link rel="prev" href="../showing_the_users_location/">
       
       
-        <link rel="next" href="../camera_positioning/">
+        <link rel="next" href="../positioning_the_camera/">
       
       
       <link rel="icon" href="../../assets/images/logo.svg">
@@ -20,7 +20,7 @@
     
     
       
-        <title>Routes - MapLayr</title>
+        <title>Plotting a Route - MapLayr</title>
       
     
     
@@ -105,7 +105,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Routes
+              Plotting a Route
             
           </span>
         </div>
@@ -173,7 +173,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../installation/" class="md-tabs__link">
+        <a href="../initial_setup/" class="md-tabs__link">
           
   
   
@@ -343,12 +343,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../installation/" class="md-nav__link">
+      <a href="../initial_setup/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Installation
+    Initial Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bundling_a_map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bundling a Map
     
   </span>
   
@@ -389,12 +412,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../annotations/" class="md-nav__link">
+      <a href="../adding_annotations/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Annotations
+    Adding Annotations
     
   </span>
   
@@ -412,12 +435,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../user_location_marker/" class="md-nav__link">
+      <a href="../showing_the_users_location/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    User Location Marker
+    Showing the User's Location
     
   </span>
   
@@ -449,7 +472,7 @@
   
   
   <span class="md-ellipsis">
-    Routes
+    Plotting a Route
     
   </span>
   
@@ -462,7 +485,7 @@
   
   
   <span class="md-ellipsis">
-    Routes
+    Plotting a Route
     
   </span>
   
@@ -487,7 +510,7 @@
         <li class="md-nav__item">
   <a href="#a-route-from-a-geographiccoordinate-to-a-geographiccoordinate" class="md-nav__link">
     <span class="md-ellipsis">
-      A Route From a GeographicCoordinate to a GeographicCoordinate
+      A Route from a GeographicCoordinate to a GeographicCoordinate
     </span>
   </a>
   
@@ -496,7 +519,7 @@
         <li class="md-nav__item">
   <a href="#a-route-from-a-geographiccoordinate-to-multiple-geographiccoordinates" class="md-nav__link">
     <span class="md-ellipsis">
-      A Route From a GeographicCoordinate to Multiple GeographicCoordinates
+      A Route from a GeographicCoordinate to Multiple GeographicCoordinates
     </span>
   </a>
   
@@ -505,7 +528,7 @@
         <li class="md-nav__item">
   <a href="#a-route-from-the-users-current-location-to-a-geographiccoordinate-or-multiple-geographiccoordinates" class="md-nav__link">
     <span class="md-ellipsis">
-      A Route From the User's Current Location to a GeographicCoordinate (or Multiple GeographicCoordinates)
+      A Route from the User's Current Location to a GeographicCoordinate (or Multiple GeographicCoordinates)
     </span>
   </a>
   
@@ -536,12 +559,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../camera_positioning/" class="md-nav__link">
+      <a href="../positioning_the_camera/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Camera Positioning
+    Positioning the Camera
     
   </span>
   
@@ -681,7 +704,7 @@
         <li class="md-nav__item">
   <a href="#a-route-from-a-geographiccoordinate-to-a-geographiccoordinate" class="md-nav__link">
     <span class="md-ellipsis">
-      A Route From a GeographicCoordinate to a GeographicCoordinate
+      A Route from a GeographicCoordinate to a GeographicCoordinate
     </span>
   </a>
   
@@ -690,7 +713,7 @@
         <li class="md-nav__item">
   <a href="#a-route-from-a-geographiccoordinate-to-multiple-geographiccoordinates" class="md-nav__link">
     <span class="md-ellipsis">
-      A Route From a GeographicCoordinate to Multiple GeographicCoordinates
+      A Route from a GeographicCoordinate to Multiple GeographicCoordinates
     </span>
   </a>
   
@@ -699,7 +722,7 @@
         <li class="md-nav__item">
   <a href="#a-route-from-the-users-current-location-to-a-geographiccoordinate-or-multiple-geographiccoordinates" class="md-nav__link">
     <span class="md-ellipsis">
-      A Route From the User's Current Location to a GeographicCoordinate (or Multiple GeographicCoordinates)
+      A Route from the User's Current Location to a GeographicCoordinate (or Multiple GeographicCoordinates)
     </span>
   </a>
   
@@ -737,7 +760,7 @@
 <p>The <code>Journey</code> API can be utilised to display a route on the map. </p>
 <p>A <code>Journey</code> takes as input a <code>from</code> parameter which is of type <code>DestinationProvider</code>, a <code>to</code> parameter which is a list of <code>DestinationProvider</code> objects and an optional <code>Journey.Options</code> parameter.</p>
 <p>The most typical use cases are covered below.</p>
-<h2 id="a-route-from-a-geographiccoordinate-to-a-geographiccoordinate">A Route From a <code>GeographicCoordinate</code> to a <code>GeographicCoordinate</code></h2>
+<h2 id="a-route-from-a-geographiccoordinate-to-a-geographiccoordinate">A Route from a <code>GeographicCoordinate</code> to a <code>GeographicCoordinate</code></h2>
 <p>To display a route between two fixed <code>GeographicCoordinate</code> objects you can create a <code>Journey</code> and add it to the map view as so:</p>
 <div class="language-kotlin highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">journey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Journey</span><span class="p">(</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="n">from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DestinationProvider</span><span class="p">(</span><span class="n">GeographicCoordinate</span><span class="p">(</span><span class="m">52.8983</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="m">1.8494</span><span class="p">)),</span>
@@ -746,7 +769,7 @@
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">mapView</span><span class="p">.</span><span class="na">addJourney</span><span class="p">(</span><span class="n">journey</span><span class="p">)</span>
 </span></code></pre></div>
-<h2 id="a-route-from-a-geographiccoordinate-to-multiple-geographiccoordinates">A Route From a <code>GeographicCoordinate</code> to Multiple <code>GeographicCoordinate</code>s</h2>
+<h2 id="a-route-from-a-geographiccoordinate-to-multiple-geographiccoordinates">A Route from a <code>GeographicCoordinate</code> to Multiple <code>GeographicCoordinate</code>s</h2>
 <p>Multiple <code>DestinationProvider</code> objects can be provided in the <code>to</code> parameter. In this case the <code>DestinationProvider</code> which is closest to the <code>from</code> <code>DestinationProvider</code> will be routed to.</p>
 <div class="language-kotlin highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">journey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Journey</span><span class="p">(</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="n">from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DestinationProvider</span><span class="p">(</span><span class="n">GeographicCoordinate</span><span class="p">(</span><span class="m">52.8983</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="m">1.8494</span><span class="p">)),</span>
@@ -758,8 +781,8 @@
 </span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
 </span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="n">mapView</span><span class="p">.</span><span class="na">addJourney</span><span class="p">(</span><span class="n">journey</span><span class="p">)</span>
 </span></code></pre></div>
-<h2 id="a-route-from-the-users-current-location-to-a-geographiccoordinate-or-multiple-geographiccoordinates">A Route From the User's Current Location to a <code>GeographicCoordinate</code> (or Multiple <code>GeographicCoordinate</code>s)</h2>
-<p>The <code>GoogleLocationId.HighAccuracy</code>, <code>GoogleLocationId.Balanced</code>, <code>GoogleLocationId.Passive</code> objects (see <a href="../user_location_marker/">User Location Marker</a>) can be used within the <code>DestinationProvider</code>. This allows you to calculate a route from the user's current location to a destination which will automatically update as the user moves.</p>
+<h2 id="a-route-from-the-users-current-location-to-a-geographiccoordinate-or-multiple-geographiccoordinates">A Route from the User's Current Location to a <code>GeographicCoordinate</code> (or Multiple <code>GeographicCoordinate</code>s)</h2>
+<p>The <code>GoogleLocationId.HighAccuracy</code>, <code>GoogleLocationId.Balanced</code>, <code>GoogleLocationId.Passive</code> objects (see <a href="../showing_the_users_location/">User Location Marker</a>) can be used within the <code>DestinationProvider</code>. This allows you to calculate a route from the user's current location to a destination which will automatically update as the user moves.</p>
 <div class="language-kotlin highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">journey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Journey</span><span class="p">(</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="n">from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DestinationProvider</span><span class="p">(</span><span class="n">GoogleLocationId</span><span class="p">.</span><span class="na">HighAccuracy</span><span class="p">),</span>
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="n">to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">listOf</span><span class="p">(</span><span class="n">DestinationProvider</span><span class="p">(</span><span class="n">GeographicCoordinate</span><span class="p">(</span><span class="m">52.8982</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="m">1.8463</span><span class="p">)))</span>
@@ -769,7 +792,7 @@
 </span></code></pre></div>
 <h2 id="journey-options">Journey Options</h2>
 <p>Journey options can be optionally specified to style the route, listen to changes to the route and provide any route options such as <code>avoidFlags</code> to be accounted for when calculating the route.</p>
-<h3 id="styling-the-route">Styling the Route</h3>
+<h3 id="styling-the-route">Styling the route</h3>
 <p>The route can be styled by providing a <code>Journey.Options</code> instance to the <code>options</code> parameter when creating a <code>Journey</code> and providing an <code>animatingRouteShaper: (AnimatingRoute) -&gt; AnimatingShapedRoute</code>. In particular <code>Shape</code> objects can be provided and styled using the <code>strokeColor</code> and <code>strokeWidth</code> parameters. The example below shows how to display the route with a red outline and a white fill.</p>
 <div class="language-kotlin highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">journey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Journey</span><span class="p">(</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="n">from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DestinationProvider</span><span class="p">(</span><span class="n">GeographicCoordinate</span><span class="p">(</span><span class="m">52.8983</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="m">1.8494</span><span class="p">)),</span>
@@ -795,7 +818,7 @@
 </span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="w">    </span><span class="p">)</span>
 </span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="p">)</span>
 </span></code></pre></div>
-<h3 id="listen-to-changes-to-the-route">Listen to Changes to the Route</h3>
+<h3 id="listen-to-changes-to-the-route">Listen to changes to the route</h3>
 <p>By providing a <code>(AnimatingRoute?) -&gt; Unit</code> lambda to the <code>listener</code> parameter you can listen to route updates. For example when using the user's current location as the <code>from</code> parameter you could display (or in this case log) the distance to the destination by using the <code>animatingRoute.route.distance</code> property.</p>
 <div class="language-kotlin highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">journey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Journey</span><span class="p">(</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="n">from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DestinationProvider</span><span class="p">(</span><span class="n">GoogleLocationId</span><span class="p">.</span><span class="na">HighAccuracy</span><span class="p">),</span>
@@ -814,7 +837,7 @@
 </span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">    </span><span class="p">)</span>
 </span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="p">)</span>
 </span></code></pre></div>
-<h3 id="route-options">Route Options</h3>
+<h3 id="route-options">Route options</h3>
 <p>A list of flags to avoid when calculating a route can be provided. For example you might wish to calculate a route that avoids uneven terrain. </p>
 <div class="language-kotlin highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">journey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Journey</span><span class="p">(</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="n">from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DestinationProvider</span><span class="p">(</span><span class="n">GeographicCoordinate</span><span class="p">(</span><span class="m">52.8983</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="m">1.8494</span><span class="p">)),</span>

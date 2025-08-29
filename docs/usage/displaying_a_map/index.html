@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../installation/">
+        <link rel="prev" href="../bundling_a_map/">
       
       
-        <link rel="next" href="../annotations/">
+        <link rel="next" href="../adding_annotations/">
       
       
       <link rel="icon" href="../../assets/images/logo.svg">
@@ -173,7 +173,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../installation/" class="md-tabs__link">
+        <a href="../initial_setup/" class="md-tabs__link">
           
   
   
@@ -343,12 +343,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../installation/" class="md-nav__link">
+      <a href="../initial_setup/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Installation
+    Initial Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bundling_a_map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bundling a Map
     
   </span>
   
@@ -449,12 +472,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../annotations/" class="md-nav__link">
+      <a href="../adding_annotations/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Annotations
+    Adding Annotations
     
   </span>
   
@@ -472,12 +495,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../user_location_marker/" class="md-nav__link">
+      <a href="../showing_the_users_location/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    User Location Marker
+    Showing the User's Location
     
   </span>
   
@@ -495,12 +518,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../routes/" class="md-nav__link">
+      <a href="../plotting_a_route/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Routes
+    Plotting a Route
     
   </span>
   
@@ -518,12 +541,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../camera_positioning/" class="md-nav__link">
+      <a href="../positioning_the_camera/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Camera Positioning
+    Positioning the Camera
     
   </span>
   
@@ -703,11 +726,11 @@
 <p>You can use the static <code>Map.managed(mapId = "{map_id}")</code> method to obtain a <code>Managed</code> instance, meaning that the map is managed by the SDK and will automatically receive updates as they're made available.</p>
 <div class="language-kotlin highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Map</span><span class="p">.</span><span class="na">managed</span><span class="p">(</span><span class="n">mapId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;c1b9f54d-6645-4433-8908-89ea914e70c7&quot;</span><span class="p">)</span>
 </span></code></pre></div>
-<p>If you have bundled your maps at build time you can use the BuildConfig to retrieve the map id as described here: <a href="../installation/#bundle-maps-at-build-time">Bundle maps at build time</a>. For example:</p>
+<p>If you have bundled your maps at build time you can use the BuildConfig to retrieve the map id as described here: <a href="../bundling_a_map/#bundle-maps-at-build-time">Bundle maps at build time</a>. For example:</p>
 <div class="language-kotlin highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Map</span><span class="p">.</span><span class="na">managed</span><span class="p">(</span><span class="n">mapId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BuildConfig</span><span class="p">.</span><span class="na">MAPLAYR_MAP_0</span><span class="p">)</span>
 </span></code></pre></div>
 <p>An example can be found here: <a href="https://github.com/attractions-io/maplayr-android/blob/main/app/src/main/java/io/attractions/maplayr/sample/ExtendedSampleActivity.kt#L51">ExtendedSampleActivity.kt</a></p>
-<h3 id="runtime-maps">Runtime Maps</h3>
+<h3 id="runtime-maps">Runtime maps</h3>
 <p>Maps do not need to be bundled at build time and can be downloaded at runtime by using the same API as above. If the <code>Managed</code> instance is assigned to a <code>MapView</code> (see below) it will display a black view until the map is available.</p>
 <p>You can identify when the map is available by observing the <code>mapContextLiveData</code> property on the <code>Managed</code> instance, which will be non-null when the map is available. The map may fail to download if the user is offline or there is some other error and in this case you can use the <code>downloadResultLiveData</code> to observe this state.</p>
 <p>An example can be found here: <a href="https://github.com/attractions-io/maplayr-android/blob/main/app/src/main/java/io/attractions/maplayr/sample/NotBundledSampleActivity.kt">NotBundledSampleActivity.kt</a></p>

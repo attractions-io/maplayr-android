@@ -19,9 +19,9 @@
 
 ## Getting Started
 
-### Installation
+### Initial Setup
 
-To get started with MapLayr for Android follow the [installation instructions](https://attractions-io.github.io/maplayr-android/usage/installation/) in our documentation. It covers how to configure a Github Access Token to add the SDK to your project using Gradle.
+To get started with MapLayr for Android follow the [initial setup guide](https://attractions-io.github.io/maplayr-android/usage/initial_setup/) in our documentation. It covers how to configure a Github Access Token to add the SDK to your project using Gradle.
 
 ### Documentation
 

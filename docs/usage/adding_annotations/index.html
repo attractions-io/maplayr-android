@@ -12,7 +12,7 @@
         <link rel="prev" href="../displaying_a_map/">
       
       
-        <link rel="next" href="../user_location_marker/">
+        <link rel="next" href="../showing_the_users_location/">
       
       
       <link rel="icon" href="../../assets/images/logo.svg">
@@ -20,7 +20,7 @@
     
     
       
-        <title>Annotations - MapLayr</title>
+        <title>Adding Annotations - MapLayr</title>
       
     
     
@@ -105,7 +105,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Annotations
+              Adding Annotations
             
           </span>
         </div>
@@ -173,7 +173,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../installation/" class="md-tabs__link">
+        <a href="../initial_setup/" class="md-tabs__link">
           
   
   
@@ -343,12 +343,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../installation/" class="md-nav__link">
+      <a href="../initial_setup/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Installation
+    Initial Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bundling_a_map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bundling a Map
     
   </span>
   
@@ -403,7 +426,7 @@
   
   
   <span class="md-ellipsis">
-    Annotations
+    Adding Annotations
     
   </span>
   
@@ -416,7 +439,7 @@
   
   
   <span class="md-ellipsis">
-    Annotations
+    Adding Annotations
     
   </span>
   
@@ -468,7 +491,7 @@
         <li class="md-nav__item">
   <a href="#listening-to-annotation-selection-and-deselection-events" class="md-nav__link">
     <span class="md-ellipsis">
-      Listening to annotation selection and deselection events
+      Listening to Annotation Selection and Deselection Events
     </span>
   </a>
   
@@ -490,12 +513,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../user_location_marker/" class="md-nav__link">
+      <a href="../showing_the_users_location/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    User Location Marker
+    Showing the User's Location
     
   </span>
   
@@ -513,12 +536,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../routes/" class="md-nav__link">
+      <a href="../plotting_a_route/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Routes
+    Plotting a Route
     
   </span>
   
@@ -536,12 +559,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../camera_positioning/" class="md-nav__link">
+      <a href="../positioning_the_camera/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Camera Positioning
+    Positioning the Camera
     
   </span>
   
@@ -708,7 +731,7 @@
         <li class="md-nav__item">
   <a href="#listening-to-annotation-selection-and-deselection-events" class="md-nav__link">
     <span class="md-ellipsis">
-      Listening to annotation selection and deselection events
+      Listening to Annotation Selection and Deselection Events
     </span>
   </a>
   
@@ -801,7 +824,7 @@
 <p>Finally, add the coordinate annotation layer to the <code>MapView</code> as so:</p>
 <div class="language-kotlin highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">mapView</span><span class="p">.</span><span class="na">addMapLayer</span><span class="p">(</span><span class="n">coordinateAnnotationLayer</span><span class="p">)</span>
 </span></code></pre></div>
-<h2 id="listening-to-annotation-selection-and-deselection-events">Listening to annotation selection and deselection events</h2>
+<h2 id="listening-to-annotation-selection-and-deselection-events">Listening to Annotation Selection and Deselection Events</h2>
 <p>To listen for events when an annotation is selected or deselected provide an implementation of the <code>CoordinateAnnotationLayer.Listener</code> interface, which is parameterised to the type specified in the <code>AnnotationLayerAdapter</code>. Then set the <code>coordinateAnnotationLayer.listener</code> to be that implementation.</p>
 <div class="language-kotlin highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">coordinateAnnotationLayer</span><span class="p">.</span><span class="na">listener</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">object</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nc">CoordinateAnnotationLayer</span><span class="p">.</span><span class="na">Listener</span><span class="o">&lt;</span><span class="n">Attraction</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>

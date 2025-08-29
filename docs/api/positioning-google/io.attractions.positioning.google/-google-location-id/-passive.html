@@ -2,7 +2,7 @@
 <html class="no-js">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
-    <title>Terrain</title>
+    <title>Passive</title>
 <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
     <script>document.documentElement.classList.replace("no-js","js");</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
@@ -45,7 +45,7 @@
         </div>
         <div class="navigation-controls">
         <div class="filter-section filter-section_loading" id="filter-section">
-                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":applayr:maplayr:dokkaHtmlPartial/release">androidJvm</button>
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":applayr:positioning-google:dokkaHtmlPartial/release">androidJvm</button>
             <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
                 <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
                 <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
@@ -56,7 +56,7 @@
                     </div>
                         <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
                             <label class="checkbox">
-                                <input type="checkbox" class="checkbox--input" id=":applayr:maplayr:dokkaHtmlPartial/release" data-filter=":applayr:maplayr:dokkaHtmlPartial/release">
+                                <input type="checkbox" class="checkbox--input" id=":applayr:positioning-google:dokkaHtmlPartial/release" data-filter=":applayr:positioning-google:dokkaHtmlPartial/release">
                                 <span class="checkbox--icon"></span>
                                 androidJvm
                             </label>
@@ -90,12 +90,12 @@
                 </div>
             </div>
             <div id="main">
-<div class="main-content" data-page-type="member" id="content" pageids="maplayr::io.attractions.maplayr.model.map/Terrain/Terrain/#kotlin.Int#kotlin.Float#io.attractions.maplayr.model.map.tile.RootIndices#kotlin.Int#io.attractions.maplayr.model.map.tile.TileSource[android.graphics.Bitmap]#io.attractions.maplayr.model.map.TileColorTransformation?/PointingToDeclaration//-1043924762">
-  <div class="breadcrumbs"><a href="../../index.html">maplayr</a><span class="delimiter">/</span><a href="../index.html">io.attractions.maplayr.model.map</a><span class="delimiter">/</span><a href="index.html">Terrain</a><span class="delimiter">/</span><span class="current">Terrain</span></div>
+<div class="main-content" data-page-type="member" id="content" pageids="positioning-google::io.attractions.positioning.google/GoogleLocationId/Passive/#/PointingToDeclaration//-1696060357">
+  <div class="breadcrumbs"><a href="../../index.html">positioning-google</a><span class="delimiter">/</span><a href="../index.html">io.attractions.positioning.google</a><span class="delimiter">/</span><a href="index.html">GoogleLocationId</a><span class="delimiter">/</span><span class="current">Passive</span></div>
   <div class="cover ">
-    <h1 class="cover"><span><span>Terrain</span></span></h1>
+    <h1 class="cover"><span><span>Passive</span></span></h1>
   </div>
-  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":applayr:maplayr:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">backgroundColor<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">tileSize<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span></span><span class="parameter ">rootIndices<span class="token operator">: </span><a href="../../io.attractions.maplayr.model.map.tile/-root-indices/index.html">RootIndices</a><span class="token punctuation">, </span></span><span class="parameter ">maxZoomLevel<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">bitmapTileSource<span class="token operator">: </span><a href="../../io.attractions.maplayr.model.map.tile/-tile-source/index.html">TileSource</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/android/graphics/Bitmap.html">Bitmap</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">tileColorTransformation<span class="token operator">: </span><a href="../-tile-color-transformation/index.html">TileColorTransformation</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span></div></div></div>
+  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":applayr:positioning-google:dokkaHtmlPartial/release"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-static/index.html"><span class="token annotation builtin">JvmStatic</span></a></div></div><span class="token keyword">val </span><a href="-passive.html">Passive</a><span class="token operator">: </span><a href="../../../positioning/io.attractions.positioning.model.coordinate/-location-id/index.html">LocationId</a></div><p class="paragraph">Gets a singleton instance of a <a href="../../../positioning/io.attractions.positioning.model.coordinate/-location-id/index.html">LocationId</a> with passive parameters.</p><p class="paragraph">geographicInterval is 1 minute - See [https://developer.android.com/reference/androidx/core/location/LocationRequestCompat.Builder#setIntervalMillis(long)] geographicMinUpdateIntervalMillis is 10 seconds - See [https://developer.android.com/reference/androidx/core/location/LocationRequestCompat.Builder#setMinUpdateIntervalMillis(long)] geographicMinUpdateDistanceMeters is 15 meters - See [https://developer.android.com/reference/androidx/core/location/LocationRequestCompat.Builder#setMinUpdateDistanceMeters(float)] geographicPriority is <a href="../-geographic-priority/-passive/index.html">GeographicPriority.Passive</a> - See [https://developer.android.com/reference/androidx/core/location/LocationRequestCompat.Builder#setPriority(int)] orientationSamplingPeriodMicros is <span data-unresolved-link="com.google.android.gms.location/DeviceOrientationRequest/OUTPUT_PERIOD_DEFAULT/#/PointingToDeclaration/">DeviceOrientationRequest.OUTPUT_PERIOD_DEFAULT</span> - See https://developers.google.com/android/reference/com/google/android/gms/location/DeviceOrientationRequest.Builder#public-deviceorientationrequest.builder-setsamplingperiodmicros-long-samplingperiodmicros</p><span class="kdoc-tag"><h4 class="">Since</h4><p class="paragraph">0.0.86</p></span></div></div>
 </div>
     <div class="footer">
         <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
