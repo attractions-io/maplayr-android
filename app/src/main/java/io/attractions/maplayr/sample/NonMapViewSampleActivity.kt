@@ -8,6 +8,10 @@ import io.attractions.livedata.LifecycleOwnerImpl
 import io.attractions.livedata.zipWith
 import io.attractions.maplayr.model.map.DownloadResult
 import io.attractions.maplayr.model.map.Map
+import io.attractions.positioning.google.GoogleLocationId
+import io.attractions.positioning.model.coordinate.Location
+import io.attractions.positioning.model.coordinate.LocationResponse
+import io.attractions.positioning.model.opengl.location.GlobalLocationManager
 
 class NonMapViewSampleActivity : AppCompatActivity() {
 
@@ -17,7 +21,8 @@ class NonMapViewSampleActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_non_map_view_sample)
-        val textView = findViewById<TextView>(R.id.text_view)
+        val mapStatusTextView = findViewById<TextView>(R.id.map_status_text_view)
+        val locationStatusTextView = findViewById<TextView>(R.id.location_status_text_view)
 
         val lifecycleOwner: LifecycleOwner = LifecycleOwnerImpl()
         this.lifecycleOwner = lifecycleOwner
@@ -27,7 +32,7 @@ class NonMapViewSampleActivity : AppCompatActivity() {
         )
 
         (map.downloadResultLiveData zipWith map.mapContextLiveData).observe(lifecycleOwner = lifecycleOwner) { (downloadResult, mapContext) ->
-            textView.text = if (mapContext != null) {
+            mapStatusTextView.text = if (mapContext != null) {
                 if (downloadResult != null) {
                     "App already has version ${mapContext.version} locally, remote download result is ${downloadResult.prettyName()}"
                 } else {
@@ -37,8 +42,16 @@ class NonMapViewSampleActivity : AppCompatActivity() {
                 if (downloadResult != null) {
                     "Download has failed to get map due to ${downloadResult.prettyName()} and the app has no map locally"
                 } else {
-                    "Downloadind map..."
+                    "Downloading map..."
                 }
+            }
+        }
+
+        GlobalLocationManager.getLocationLiveData(GoogleLocationId.HighAccuracy).observe(lifecycleOwner = lifecycleOwner) { locationResponse ->
+            when (locationResponse) {
+                is Location -> locationStatusTextView.text = "Location: ${locationResponse.geographicCoordinate}"
+                LocationResponse.NotPermitted -> locationStatusTextView.text = "Location permissions not granted."
+                LocationResponse.Pending -> locationStatusTextView.text = "Location pending..."
             }
         }
     }

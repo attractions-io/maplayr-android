@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/text_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NotBundledSampleActivity" />
+    android:orientation="vertical"
+    tools:context=".NotBundledSampleActivity">
+
+    <TextView
+        android:id="@+id/map_status_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/location_status_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
+

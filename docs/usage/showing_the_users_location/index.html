@@ -511,6 +511,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#observing-location-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Observing Location Updates
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -719,6 +728,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#observing-location-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Observing Location Updates
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -742,7 +760,7 @@
 <p>MapLayr includes a <code>LocationMarker</code> class which can be added to the <code>MapView</code> to display the user's location.</p>
 <h2 id="add-the-positioning-google-dependency">Add the <code>positioning-google</code> Dependency</h2>
 <p>The <code>LocationMarker</code> class takes a <code>LocationProvider</code> parameter, which is provided by the <code>positioning-google</code> library. In your module <code>build.gradle</code> file add the following dependency:</p>
-<div class="language-groovy highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">implementation</span><span class="w"> </span><span class="s2">&quot;io.attractions:positioning-google:0.0.101&quot;</span>
+<div class="language-groovy highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">implementation</span><span class="w"> </span><span class="s2">&quot;io.attractions:positioning-google:0.0.102&quot;</span>
 </span></code></pre></div>
 <p>An example can be found here: <a href="https://github.com/attractions-io/maplayr-android/blob/main/app/build.gradle#L81">app/build.gradle</a></p>
 <h2 id="add-a-location-marker">Add a Location Marker</h2>
@@ -754,6 +772,17 @@
 <h2 id="location-permission">Location Permission</h2>
 <p>The MapLayr SDK does not handle location permissions so these must be implemented by the consuming application.</p>
 <p>An example can be found here: <a href="https://github.com/attractions-io/maplayr-android/blob/main/app/src/main/java/io/attractions/maplayr/sample/ExtendedSampleActivity.kt#L143-L150">ExtendedSampleActivity.kt</a></p>
+<h2 id="observing-location-updates">Observing Location Updates</h2>
+<p>To observe location updates retrieve a <code>LiveData&lt;LocationResponse&gt;</code> for your desired <code>LocationId</code> from the <code>GlobalLocationManager</code>.</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">GlobalLocationManager</span><span class="p">.</span><span class="na">getLocationLiveData</span><span class="p">(</span><span class="n">GoogleLocationId</span><span class="p">.</span><span class="na">HighAccuracy</span><span class="p">).</span><span class="na">observe</span><span class="p">(</span><span class="n">lifecycleOwner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lifecycleOwner</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">locationResponse</span><span class="w"> </span><span class="o">-&gt;</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="k">when</span><span class="w"> </span><span class="p">(</span><span class="n">locationResponse</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">        </span><span class="k">is</span><span class="w"> </span><span class="n">Location</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Location: </span><span class="si">${</span><span class="n">locationResponse</span><span class="p">.</span><span class="na">geographicCoordinate</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">        </span><span class="n">LocationResponse</span><span class="p">.</span><span class="na">NotPermitted</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Location: Permissions not granted.&quot;</span><span class="p">)</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">        </span><span class="n">LocationResponse</span><span class="p">.</span><span class="na">Pending</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Location: Pending...&quot;</span><span class="p">)</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>An example can be found here: <a href="https://github.com/attractions-io/maplayr-android/blob/main/app/src/main/java/io/attractions/maplayr/sample/NonMapViewSampleActivity.kt#L50-L56">NonMapViewSampleActivity.kt</a></p>
 <figure>
 <p><img alt="User Location Marker" src="../../assets/images/user_location_marker.jpg" width="35%" /></p>
 <figcaption></figcaption>
