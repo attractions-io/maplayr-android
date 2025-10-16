@@ -15,7 +15,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'io.attractions:maplayr-plugin:0.0.103'
+        classpath 'io.attractions:maplayr-plugin:0.0.104'
         classpath 'com.android.tools.build:gradle:8.5.2'
         classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:2.0.0'
     }
