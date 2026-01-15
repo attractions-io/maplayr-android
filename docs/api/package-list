@@ -10,8 +10,6 @@ io.attractions.maplayr.androidLayer.annotation
 io.attractions.maplayr.androidLayer.annotation.defaultAnnotation
 io.attractions.maplayr.context
 io.attractions.maplayr.model.coordinate
-io.attractions.maplayr.model.coordinate.projection
-io.attractions.maplayr.model.geometry.mapvector
 io.attractions.maplayr.model.map
 io.attractions.maplayr.model.map.tile
 io.attractions.maplayr.model.opengl.camera
@@ -28,9 +26,12 @@ module:positioning
 io.attractions.maplayr.model.opengl.location
 io.attractions.positioning
 io.attractions.positioning.model.coordinate
+io.attractions.positioning.model.coordinate.mappoint
+io.attractions.positioning.model.coordinate.mapvector
+io.attractions.positioning.model.coordinate.projection
+io.attractions.positioning.model.geometry.matrix
 io.attractions.positioning.model.opengl.location
 module:positioning-bluetooth
 io.attractions.positioning.bluetooth
-io.attractions.positionlayr.bluetooth
 module:positioning-google
 io.attractions.positioning.google
