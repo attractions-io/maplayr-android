@@ -21,6 +21,7 @@ io.attractions.maplayr.model.opengl.locationmarker
 io.attractions.maplayr.model.opengl.route
 io.attractions.maplayr.model.opengl.shapes
 io.attractions.maplayr.model.routes
+io.attractions.maplayr.model.utils
 io.attractions.maplayr.utils
 module:positioning
 io.attractions.maplayr.model.opengl.location
