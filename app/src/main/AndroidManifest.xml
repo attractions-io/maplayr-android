@@ -32,6 +32,9 @@
         <activity
             android:name=".NonMapViewSampleActivity"
             android:exported="false"/>
+        <activity
+            android:name=".ui.stableid.StableIdSampleActivity"
+            android:exported="false"/>
     </application>
 
 </manifest>

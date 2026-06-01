@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import io.attractions.maplayr.sample.ui.stableid.StableIdSampleActivity
 
 class SampleSelectionActivity : AppCompatActivity() {
 
@@ -21,6 +22,10 @@ class SampleSelectionActivity : AppCompatActivity() {
 
         findViewById<View>(R.id.non_map_view_sample).setOnClickListener {
             startActivity(Intent(this, NonMapViewSampleActivity::class.java))
+        }
+
+        findViewById<View>(R.id.stable_id_sample).setOnClickListener {
+            startActivity(Intent(this, StableIdSampleActivity::class.java))
         }
     }
 }
