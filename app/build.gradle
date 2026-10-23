@@ -18,12 +18,12 @@ repositories {
 
 android {
     namespace 'io.attractions.maplayr.sample'
-    compileSdk 34
+    compileSdk = 34
 
     defaultConfig {
         applicationId "io.attractions.maplayr.sample"
-        minSdk 21
-        targetSdk 34
+        minSdk = 21
+        targetSdk = 34
         versionCode 1
         versionName "1.0"
     }
@@ -80,6 +80,6 @@ dependencies {
     implementation 'androidx.activity:activity-ktx:1.8.2'
 
     // Attractions.io MapView
-    implementation "io.attractions:maplayr:0.0.118"
-    implementation "io.attractions:positioning-google:0.0.118"
+    implementation "io.attractions:maplayr:0.0.129"
+    implementation "io.attractions:positioning-google:0.0.129"
 }
