@@ -4,11 +4,15 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import io.attractions.livedata.LifecycleOwner
 import io.attractions.maplayr.MapView
 import io.attractions.maplayr.model.map.DownloadResult
 import io.attractions.maplayr.model.map.Map
+import io.attractions.maplayr.model.map.MapVersionResult
 
 class NotBundledSampleActivity : AppCompatActivity() {
+
+    private val mapLifecycleOwner = LifecycleOwner()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,16 +20,18 @@ class NotBundledSampleActivity : AppCompatActivity() {
 
         val mapView = findViewById<MapView>(R.id.map_view)
 
-        mapView.setMap(Map.managed(mapId = "df98bfa3-156c-49cb-9f94-1b9ec52a08c4"))
+        val map = Map.managed(mapId = "df98bfa3-156c-49cb-9f94-1b9ec52a08c4")
+
+        mapView.setMap(map)
 
         mapView.isVisible = false
 
-        mapView.mapContextLiveData.observe(lifecycleOwner = mapView) { mapContext ->
-            Log.d("NotBundledSample", "Map context changed: $mapContext")
-            mapView.isVisible = mapContext != null
+        map.mapVersionResult.observe(lifecycleOwner = mapLifecycleOwner) { mapVersionResult ->
+            Log.d("NotBundledSample", "Map version result changed: $mapVersionResult")
+            mapView.isVisible = mapVersionResult is MapVersionResult.Available
         }
 
-        mapView.downloadResultLiveData.observe(lifecycleOwner = mapView) { downloadResult ->
+        map.downloadResult.observe(lifecycleOwner = mapLifecycleOwner) { downloadResult ->
             when (downloadResult) {
                 is DownloadResult.Success -> Log.d("NotBundledSample", "Download result is success")
                 DownloadResult.NoUpdateAvailable -> Log.d("NotBundledSample", "Download result is no update available")
@@ -34,5 +40,10 @@ class NotBundledSampleActivity : AppCompatActivity() {
                 null -> Log.d("NotBundledSample", "Download result is null")
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mapLifecycleOwner.cancelAll()
     }
 }

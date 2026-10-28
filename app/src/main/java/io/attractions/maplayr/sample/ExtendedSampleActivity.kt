@@ -12,16 +12,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.doOnLayout
+import io.attractions.livedata.LifecycleOwner
 import io.attractions.maplayr.CameraTarget
 import io.attractions.maplayr.MapView
 import io.attractions.maplayr.androidLayer.annotation.CoordinateAnnotationLayer
 import io.attractions.maplayr.model.coordinate.DestinationProvider
 import io.attractions.maplayr.model.map.Map
-import io.attractions.maplayr.model.opengl.journey.Journey
 import io.attractions.maplayr.model.opengl.locationmarker.LocationMarker
-import io.attractions.maplayr.model.opengl.route.AnimatingShapedRoute
 import io.attractions.maplayr.model.opengl.shapes.Shape
-import io.attractions.maplayr.model.routes.AnimatingRoute
+import io.attractions.maplayr.model.routes.RouteResult
+import io.attractions.maplayr.model.routes.path
 import io.attractions.maplayr.sample.data.annotationlayer.AnnotationLayerAdapter
 import io.attractions.maplayr.sample.data.model.Attraction
 import io.attractions.maplayr.sample.data.model.AttractionManager
@@ -32,6 +32,10 @@ import kotlin.math.PI
 class ExtendedSampleActivity : AppCompatActivity() {
 
     private var mapViewVariable: MapView? = null
+
+    private val routeLifecycleOwner = LifecycleOwner()
+
+    private var routeShapes = emptyList<Shape>()
 
     private val mapView: MapView
         get() = mapViewVariable ?: throw Exception("Map view not initialised")
@@ -48,7 +52,9 @@ class ExtendedSampleActivity : AppCompatActivity() {
         /* ---------- ---------- ---------- ---------- ---------- */
 
         // Load the map metadata and assign it to the map view
-        mapView.setMap(Map.managed(BuildConfig.MAPLAYR_MAP))
+        val map = Map.managed(BuildConfig.MAPLAYR_MAP)
+
+        mapView.setMap(map)
 
         /* ---------- ---------- ---------- ---------- ---------- */
         /* -- Annotation layer -- */
@@ -67,7 +73,9 @@ class ExtendedSampleActivity : AppCompatActivity() {
                 element: Attraction,
                 coordinateAnnotationLayer: CoordinateAnnotationLayer<Attraction>
             ) {
-                mapView.removeAllJourneys()
+                routeLifecycleOwner.cancelAll()
+                routeShapes.forEach { routeShape -> mapView.removeShape(routeShape) }
+                routeShapes = emptyList()
             }
 
             override fun didSelectAnnotation(
@@ -79,51 +87,32 @@ class ExtendedSampleActivity : AppCompatActivity() {
                 /* -- Route Calculation -- */
                 /* ---------- ---------- ---------- ---------- ---------- */
 
-                mapView.removeAllJourneys()
+                routeLifecycleOwner.cancelAll()
 
-                val journey = Journey(
+                val route = map.createRoute(
                     from = DestinationProvider(GoogleLocationId.HighAccuracy),
-                    to = listOf(DestinationProvider(GeographicCoordinate(element.latitude, element.longitude))),
-                    options = Journey.Options(
-                        listener = object : (AnimatingRoute?) -> Unit {
-
-                            private var shownError = false
-                            private var readyToShowError = true
-
-                            override fun invoke(animatingRoute: AnimatingRoute?) {
-                                if (animatingRoute == null) {
-                                    if (!shownError) {
-                                        shownError = true
-                                        if (readyToShowError) {
-                                            readyToShowError = false
-                                            // Show an off resort error
-                                            AlertDialog.Builder(this@ExtendedSampleActivity)
-                                                .setTitle("Error")
-                                                .setMessage("Unable to create route whilst you're not on resort")
-                                                .setNeutralButton("Ok") { _, _ -> readyToShowError = true }
-                                                .show()
-                                        }
-                                    }
-                                } else {
-                                    shownError = false
-                                }
-                            }
-                        },
-                        animatingRouteShaper = { animatingRoute ->
-                            AnimatingShapedRoute(
-                                animatingRoute = animatingRoute,
-                                shapes = listOf(
-                                    Shape(animatingRoute.route.path, Color.BLUE, 4f),
-                                    Shape(animatingRoute.route.path, Color.WHITE, 2f)
-                                )
-                            )
-                        }
-                    )
+                    to = listOf(DestinationProvider(GeographicCoordinate(element.latitude, element.longitude)))
                 )
-                mapView.addJourney(journey)
+
+                route.observe(routeLifecycleOwner) { routeResult ->
+                    if (routeResult is RouteResult.Failure.OutOfBounds) {
+                        AlertDialog.Builder(this@ExtendedSampleActivity)
+                            .setTitle("Error")
+                            .setMessage("Unable to create route whilst you're not on resort")
+                            .setNeutralButton("Ok", null)
+                            .show()
+                    }
+                }
+
+                routeShapes.forEach { routeShape -> mapView.removeShape(routeShape) }
+                routeShapes = listOf(
+                    Shape(route.path, Color.BLUE, 4f),
+                    Shape(route.path, Color.WHITE, 2f)
+                )
+                routeShapes.forEach { routeShape -> mapView.addShape(routeShape) }
                 mapView.moveCamera(
-                    cameraTarget = CameraTarget.Journey(
-                        journey = journey,
+                    cameraTarget = CameraTarget.Route(
+                        route = route,
                         tilt = Math.toRadians(30.0),
                         fallback = CameraTarget.Stationary
                     ),
@@ -199,6 +188,7 @@ class ExtendedSampleActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        routeLifecycleOwner.cancelAll()
         mapViewVariable = null
     }
 }

@@ -622,6 +622,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#version-00130" class="md-nav__link">
+    <span class="md-ellipsis">
+      Version 0.0.130
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#version-00129" class="md-nav__link">
     <span class="md-ellipsis">
       Version 0.0.129
@@ -844,6 +853,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#version-00130" class="md-nav__link">
+    <span class="md-ellipsis">
+      Version 0.0.130
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#version-00129" class="md-nav__link">
     <span class="md-ellipsis">
       Version 0.0.129
@@ -1043,120 +1061,150 @@
 
 
 <h1 id="changelog">Changelog</h1>
-<h2 id="version-00129">Version 0.0.129</h2>
+<h2 id="version-00130">Version 0.0.130</h2>
 <h3 id="added">Added</h3>
+<ul>
+<li>Added <code>Map.createRoute</code>, which creates a route that updates as its locations or the map change, with or without a <code>MapView</code>.</li>
+<li>Added <code>Map.mapVersionResult</code>, the map's current version or why there isn't one.</li>
+<li>Added <code>CameraTarget.Route</code> and <code>MapView.moveCamera(route:)</code>, which fit the camera to a route.</li>
+<li>Added <code>MapView.addShape</code> and <code>MapView.removeShape</code>.</li>
+</ul>
+<h3 id="changed">Changed</h3>
+<ul>
+<li><code>Shape.path</code> is now a <code>LiveData&lt;Path?&gt;</code>, which the shape follows as it changes.</li>
+<li><code>Map.Managed.downloadResultLiveData</code> has been renamed to <code>downloadResult</code>, and <code>MapView.cameraTargetLiveData</code> to <code>cameraTarget</code>.</li>
+<li><code>PathNetwork.calculateDirections</code> has been renamed to <code>calculateRoute</code>, and now returns why there's no route instead of <code>null</code>. It also skips a destination that can't be joined to the paths, where it used to return no route.</li>
+<li>Added <code>cancelAll</code> to <code>LifecycleOwner</code>, which cancels every observation the owner holds. Your own <code>LifecycleOwner</code> classes must implement it.</li>
+<li><code>LifecycleOwnerImpl()</code> has been replaced by the <code>LifecycleOwner()</code> function.</li>
+</ul>
+<h3 id="removed">Removed</h3>
+<ul>
+<li>Removed <code>Map.mapContextLiveData</code>. Use <code>mapVersionResult</code> instead.</li>
+<li>Removed <code>MapView.mapContextLiveData</code> and <code>MapView.downloadResultLiveData</code>. Use <code>mapVersionResult</code> on the <code>Map</code> you set on the view, and <code>downloadResult</code> on a <code>Map.Managed</code>, instead.</li>
+<li><code>MapView</code> is no longer a <code>LifecycleOwner</code>. Observe with your own <code>LifecycleOwner()</code>, kept for as long as you observe.</li>
+<li>Removed <code>MapView.shapes</code>. Use <code>addShape</code> and <code>removeShape</code> instead.</li>
+<li>Removed <code>Journey</code>, <code>AnimatingRoute</code>, <code>AnimatingShapedRoute</code>, <code>CameraTarget.Journey</code>, <code>MapView.moveCamera(journey:)</code>, <code>MapView.addJourney</code>, <code>MapView.removeJourney</code> and <code>MapView.removeAllJourneys</code>. Use <code>Map.createRoute</code>, shapes and <code>CameraTarget.Route</code> instead.</li>
+</ul>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li><code>CameraTarget.LocationId</code> now follows its location without a <code>LocationMarker</code> for it.</li>
+<li>Cancelling an observation of a flattened <code>LiveData</code> now also stops observing the inner <code>LiveData</code>, so a cancelled route stops recalculating.</li>
+<li>Cancelling an observation a second time no longer stops a <code>LiveData</code> from caching its value for its other observers.</li>
+</ul>
+<h2 id="version-00129">Version 0.0.129</h2>
+<h3 id="added_1">Added</h3>
 <ul>
 <li>Maps can now display 3D models included in the map bundle.</li>
 </ul>
-<h3 id="changed">Changed</h3>
+<h3 id="changed_1">Changed</h3>
 <ul>
 <li>MapLayr now requires OpenGL ES 3.0.</li>
 <li>Improved routing performance.</li>
 </ul>
-<h3 id="fixed">Fixed</h3>
+<h3 id="fixed_1">Fixed</h3>
 <ul>
 <li>Fixed a crash that could occur when a <code>MapView</code> inside Jetpack Compose was touched with some fingers on the <code>MapView</code> and others outside it.</li>
 </ul>
 <h2 id="version-00118">Version 0.0.118</h2>
-<h3 id="added_1">Added</h3>
+<h3 id="added_2">Added</h3>
 <ul>
 <li>Added the <code>elementStableId</code> function to <code>CoordinateAnnotationLayer.Adapter</code> for identifying an annotation across data refreshes. When provided, <code>CoordinateAnnotationLayer.replace()</code> rebinds matching annotations in place rather than unmounting and remounting them, preserving selection state.</li>
 </ul>
-<h3 id="fixed_1">Fixed</h3>
+<h3 id="fixed_2">Fixed</h3>
 <ul>
 <li>Fixed the default journey route stroke colour being fully transparent, causing the route to be invisible.</li>
 </ul>
-<h3 id="changed_1">Changed</h3>
+<h3 id="changed_2">Changed</h3>
 <ul>
 <li>The type that parameterises the <code>CoordinateAnnotationLayer</code> must be non-null.</li>
 </ul>
 <h2 id="version-00116">Version 0.0.116</h2>
-<h3 id="fixed_2">Fixed</h3>
+<h3 id="fixed_3">Fixed</h3>
 <ul>
 <li>Fixed a crash that could occur when the user interacted with the <code>MapView</code> whilst the <code>Map</code> was downloading.</li>
 </ul>
 <h2 id="version-00114">Version 0.0.114</h2>
-<h3 id="changed_2">Changed</h3>
+<h3 id="changed_3">Changed</h3>
 <ul>
 <li>Improvements to the beacon based indoor positioning algorithm.</li>
 </ul>
 <h2 id="version-00113">Version 0.0.113</h2>
-<h3 id="added_2">Added</h3>
+<h3 id="added_3">Added</h3>
 <ul>
 <li>Added the extension function <code>MapPoint.containingTileIndex()</code> function.</li>
 </ul>
 <h2 id="version-00112">Version 0.0.112</h2>
-<h3 id="added_3">Added</h3>
+<h3 id="added_4">Added</h3>
 <ul>
 <li>Added <code>PositionAndHeadingLocationId</code> which accepts a <code>LocationId</code> used for positioning the user and another for orienting the user.</li>
 <li>Added <code>InterceptingLocationId</code> which accepts a <code>LocationId</code> and interceptor function for modifying the <code>LocationResponse</code> of the <code>LocationId</code> input provided.</li>
 </ul>
-<h3 id="changed_3">Changed</h3>
+<h3 id="changed_4">Changed</h3>
 <ul>
 <li>Improvements to the beacon based indoor positioning algorithm.</li>
 <li>The <code>MapPoint</code> class has moved from the package <code>io.attractions.maplayr.model.coordinate</code> to package <code>io.attractions.positioning.model.coordinate.mappoint</code>.</li>
 <li>The <code>MapProjection</code> class has moved from the package <code>io.attractions.maplayr.model.coordinate.projection</code> to package <code>io.attractions.positioning.model.coordinate.projection</code>.</li>
 </ul>
 <h2 id="version-00109">Version 0.0.109</h2>
-<h3 id="changed_4">Changed</h3>
+<h3 id="changed_5">Changed</h3>
 <ul>
 <li>The default camera elevation has been adjusted so that the entire map bounds are now visible.</li>
 </ul>
 <h2 id="version-00108">Version 0.0.108</h2>
-<h3 id="added_4">Added</h3>
+<h3 id="added_5">Added</h3>
 <ul>
 <li>Added the <code>MapView.setMapVersionContext()</code> API to allow setting a <code>MapVersionContext</code> directly on the map view as an alternative to <code>setMap()</code>. This can be used with <code>MapVersionContext</code> obtained from <code>Map.Managed.mapContextLiveData</code></li>
 </ul>
 <h2 id="version-00107">Version 0.0.107</h2>
-<h3 id="added_5">Added</h3>
+<h3 id="added_6">Added</h3>
 <ul>
 <li>Added the <code>MapView.computeSmallestCircle()</code> API for computing the smallest enclosing circle from a list of <code>MapPoint</code> objects.</li>
 </ul>
-<h3 id="removed">Removed</h3>
+<h3 id="removed_1">Removed</h3>
 <ul>
 <li>Removed the <code>EnclosingCircle.computeSmallestCircle()</code> API. The same APIs should be used on a <code>MapView</code> instance.</li>
 </ul>
 <h2 id="version-00106">Version 0.0.106</h2>
-<h3 id="added_6">Added</h3>
+<h3 id="added_7">Added</h3>
 <ul>
 <li>Added the <code>EnclosingCircle.computeSmallestCircle()</code> API for computing the smallest enclosing circle from a list of <code>MapPoint</code> or <code>GeographicCoordinate</code> objects.</li>
 </ul>
-<h3 id="fixed_3">Fixed</h3>
+<h3 id="fixed_4">Fixed</h3>
 <ul>
 <li>Improved the camera unlocking mechanism in multi-level map scenarios.</li>
 </ul>
 <h2 id="version-00104">Version 0.0.104</h2>
-<h3 id="changed_5">Changed</h3>
+<h3 id="changed_6">Changed</h3>
 <ul>
 <li>Improvements to the beacon based indoor positioning algorithm.</li>
 </ul>
 <h2 id="version-00103">Version 0.0.103</h2>
-<h3 id="fixed_4">Fixed</h3>
+<h3 id="fixed_5">Fixed</h3>
 <ul>
 <li>In a multi-level map annotations that aren't visible can no longer be selected.</li>
 </ul>
 <h2 id="version-00102">Version 0.0.102</h2>
-<h3 id="added_7">Added</h3>
+<h3 id="added_8">Added</h3>
 <ul>
 <li>Added the <code>GlobalLocationManager.getLocationLiveData()</code> API to access location updates for a given LocationId.</li>
 </ul>
 <h2 id="version-00101">Version 0.0.101</h2>
-<h3 id="fixed_5">Fixed</h3>
+<h3 id="fixed_6">Fixed</h3>
 <ul>
 <li>Fixed a crash that could occur when the app attempted to render with an invalid surface.</li>
 </ul>
 <h2 id="version-0098">Version 0.0.98</h2>
-<h3 id="fixed_6">Fixed</h3>
+<h3 id="fixed_7">Fixed</h3>
 <ul>
 <li>Fixed an issue where under certain circumstances transparent building map tiles would incorrectly display as opaque with the map's background colour.</li>
 </ul>
 <h2 id="version-0093">Version 0.0.93</h2>
-<h3 id="fixed_7">Fixed</h3>
+<h3 id="fixed_8">Fixed</h3>
 <ul>
 <li>Fix for incorrect visibility of annotations when changing the displayed level of a building.</li>
 </ul>
 <h2 id="version-0092">Version 0.0.92</h2>
-<h3 id="changed_6">Changed</h3>
+<h3 id="changed_7">Changed</h3>
 <ul>
 <li>The <code>showLevel</code> function on a <code>MapView</code> now accepts a <code>levelId: LevelId</code> parameter as opposed to <code>building: Building</code> and <code>level: Level</code> parameters.</li>
 <li>The <code>DestinationProvider</code> class now accepts a <code>levelId: LevelId?</code> parameter instead of a <code>levelId: Level?</code> parameter. The default value of this parameter is still <code>null</code> to signify the default terrain.</li>
@@ -1165,22 +1213,22 @@
 <li>The <code>positionlayr-google</code> SDK has been renamed to <code>positioning-google</code>.</li>
 </ul>
 <h2 id="version-0090">Version 0.0.90</h2>
-<h3 id="added_8">Added</h3>
+<h3 id="added_9">Added</h3>
 <ul>
 <li>The installation section in the documentation now includes Kotlin build script sample code and modern Gradle repository &amp; plugin management sample code.</li>
 </ul>
-<h3 id="fixed_8">Fixed</h3>
+<h3 id="fixed_9">Fixed</h3>
 <ul>
 <li>Kotlin build script support for the MapLayr Gradle plugin.</li>
 <li>MapLayr Gradle plugin can now be defined in the plugins block.</li>
 </ul>
 <h2 id="version-0087">Version 0.0.87</h2>
-<h3 id="fixed_9">Fixed</h3>
+<h3 id="fixed_10">Fixed</h3>
 <ul>
 <li>Fix for delay in applying <code>ColorTransformationMode</code> and <code>LightsMode</code></li>
 </ul>
 <h2 id="version-0086">Version 0.0.86</h2>
-<h3 id="changed_7">Changed</h3>
+<h3 id="changed_8">Changed</h3>
 <ul>
 <li>The <code>idString</code> parameter in the <code>Map.managed</code> function has been renamed to <code>mapId</code>.</li>
 </ul>

@@ -840,14 +840,14 @@ To avoid saving your GitHub credentials directly in your repo you can add them t
 <div class="tabbed-block">
 <div class="language-groovy highlight"><span class="filename">build.gradle</span><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">buildscript</span><span class="w"> </span><span class="o">{</span>
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="n">dependencies</span><span class="w"> </span><span class="o">{</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">        </span><span class="n">classpath</span><span class="w"> </span><span class="s1">&#39;io.attractions:maplayr-plugin:0.0.129&#39;</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">        </span><span class="n">classpath</span><span class="w"> </span><span class="s1">&#39;io.attractions:maplayr-plugin:0.0.130&#39;</span>
 </span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="o">}</span>
 </span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="o">}</span>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
 <div class="language-kotlin highlight"><span class="filename">build.gradle.kts</span><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">plugins</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="n">id</span><span class="p">(</span><span class="s">&quot;io.attractions.maplayr-plugin&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">version</span><span class="p">(</span><span class="s">&quot;0.0.129&quot;</span><span class="p">)</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="n">id</span><span class="p">(</span><span class="s">&quot;io.attractions.maplayr-plugin&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">version</span><span class="p">(</span><span class="s">&quot;0.0.130&quot;</span><span class="p">)</span>
 </span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="p">}</span>
 </span></code></pre></div>
 </div>
@@ -866,7 +866,7 @@ To avoid saving your GitHub credentials directly in your repo you can add them t
 </div>
 <div class="tabbed-block">
 <div class="language-kotlin highlight"><span class="filename">app/build.gradle.kts</span><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">plugins</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="n">id</span><span class="p">(</span><span class="s">&quot;io.attractions.maplayr-plugin&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">version</span><span class="p">(</span><span class="s">&quot;0.0.129&quot;</span><span class="p">)</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="n">id</span><span class="p">(</span><span class="s">&quot;io.attractions.maplayr-plugin&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">version</span><span class="p">(</span><span class="s">&quot;0.0.130&quot;</span><span class="p">)</span>
 </span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="p">}</span>
 </span></code></pre></div>
 </div>
@@ -911,7 +911,7 @@ To avoid saving your GitHub credentials directly in your repo you can add them t
 </div>
 </div>
 </div>
-<p>An example can be found here: <a href="https://github.com/attractions-io/maplayr-android/blob/main/app/build.gradle#L9-L15">app/build.gradle</a></p>
+<p>An example can be found here: <a href="https://github.com/attractions-io/maplayr-android/blob/main/app/build.gradle#L10-L16">app/build.gradle</a></p>
 <p>If your project uses the centralised repository approach within <code>settings.gradle</code> using the <code>dependencyResolutionManagement { repositories }</code> block then add the GitHub package registry as so:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Groovy</label><label for="__tabbed_6_2">Kotlin</label></div>
 <div class="tabbed-content">
@@ -950,19 +950,19 @@ To avoid saving your GitHub credentials directly in your repo you can add them t
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="language-groovy highlight"><span class="filename">app/build.gradle</span><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">{</span>
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span><span class="n">implementation</span><span class="w"> </span><span class="s2">&quot;io.attractions:maplayr:0.0.129&quot;</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span><span class="n">implementation</span><span class="w"> </span><span class="s2">&quot;io.attractions:maplayr:0.0.130&quot;</span>
 </span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="o">}</span>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
 <div class="language-kotlin highlight"><span class="filename">app/build.gradle.kts</span><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">dependencies</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="s">&quot;io.attractions:maplayr:0.0.129&quot;</span><span class="p">)</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="s">&quot;io.attractions:maplayr:0.0.130&quot;</span><span class="p">)</span>
 </span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="p">}</span>
 </span></code></pre></div>
 </div>
 </div>
 </div>
-<p>An example can be found here: <a href="https://github.com/attractions-io/maplayr-android/blob/main/app/build.gradle#L79">app/build.gradle</a></p>
+<p>An example can be found here: <a href="https://github.com/attractions-io/maplayr-android/blob/main/app/build.gradle#L83">app/build.gradle</a></p>
 <h2 id="adding-your-api-key">Adding Your API Key</h2>
 <p>In the app module <code>build.gradle</code> configure the MapLayr plugin. The <code>apiKey</code> is required for any usage of the SDK</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">Groovy</label><label for="__tabbed_8_2">Kotlin</label></div>
@@ -981,7 +981,7 @@ To avoid saving your GitHub credentials directly in your repo you can add them t
 </div>
 </div>
 </div>
-<p>An example can be found here: <a href="https://github.com/attractions-io/maplayr-android/blob/main/app/build.gradle#L60">app/build.gradle</a></p>
+<p>An example can be found here: <a href="https://github.com/attractions-io/maplayr-android/blob/main/app/build.gradle#L61">app/build.gradle</a></p>
 
 
 

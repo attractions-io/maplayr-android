@@ -729,17 +729,17 @@
 <p>If you have bundled your maps at build time you can use the BuildConfig to retrieve the map id as described here: <a href="../bundling_a_map/#bundle-maps-at-build-time">Bundle maps at build time</a>. For example:</p>
 <div class="language-kotlin highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Map</span><span class="p">.</span><span class="na">managed</span><span class="p">(</span><span class="n">mapId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BuildConfig</span><span class="p">.</span><span class="na">MAPLAYR_MAP_0</span><span class="p">)</span>
 </span></code></pre></div>
-<p>An example can be found here: <a href="https://github.com/attractions-io/maplayr-android/blob/main/app/src/main/java/io/attractions/maplayr/sample/ExtendedSampleActivity.kt#L51">ExtendedSampleActivity.kt</a></p>
+<p>An example can be found here: <a href="https://github.com/attractions-io/maplayr-android/blob/main/app/src/main/java/io/attractions/maplayr/sample/ExtendedSampleActivity.kt#L55">ExtendedSampleActivity.kt</a></p>
 <h3 id="runtime-maps">Runtime maps</h3>
 <p>Maps do not need to be bundled at build time and can be downloaded at runtime by using the same API as above. If the <code>Managed</code> instance is assigned to a <code>MapView</code> (see below) it will display a black view until the map is available.</p>
-<p>You can identify when the map is available by observing the <code>mapContextLiveData</code> property on the <code>Managed</code> instance, which will be non-null when the map is available. The map may fail to download if the user is offline or there is some other error and in this case you can use the <code>downloadResultLiveData</code> to observe this state.</p>
+<p>You can identify when the map is available by observing the <code>mapVersionResult</code> property on the <code>Managed</code> instance. It's <code>MapVersionResult.Available</code> once the map is available, and otherwise a <code>MapVersionResult.Unavailable</code> saying why it isn't: <code>Loading</code>, <code>Unauthorized</code>, or <code>Failed</code> when the map couldn't be downloaded, for example because the user is offline.</p>
 <p>An example can be found here: <a href="https://github.com/attractions-io/maplayr-android/blob/main/app/src/main/java/io/attractions/maplayr/sample/NotBundledSampleActivity.kt">NotBundledSampleActivity.kt</a></p>
 <h2 id="map-view">Map View</h2>
 <p>MapLayr provides the class <code>MapView</code>, a subclass of <code>View</code>. It can be configured with a <code>Managed</code> instance, which can be obtained via the steps above.</p>
 <p>To have the <code>MapView</code> display your map simply call the <code>setMap</code> function with your <code>Managed</code> instance as so:</p>
 <div class="language-kotlin highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">mapView</span><span class="p">.</span><span class="na">setMap</span><span class="p">(</span><span class="n">map</span><span class="p">)</span>
 </span></code></pre></div>
-<p>An example can be found here: <a href="https://github.com/attractions-io/maplayr-android/blob/main/app/src/main/java/io/attractions/maplayr/sample/ExtendedSampleActivity.kt#L51">ExtendedSampleActivity.kt</a></p>
+<p>An example can be found here: <a href="https://github.com/attractions-io/maplayr-android/blob/main/app/src/main/java/io/attractions/maplayr/sample/ExtendedSampleActivity.kt#L57">ExtendedSampleActivity.kt</a></p>
 <figure>
 <p><img alt="Displaying a Map" src="../../assets/images/displaying_a_map.jpg" width="35%" /></p>
 <figcaption></figcaption>

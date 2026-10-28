@@ -15,10 +15,8 @@ io.attractions.maplayr.model.map.tile
 io.attractions.maplayr.model.opengl.camera
 io.attractions.maplayr.model.opengl.camera.movement.animation
 io.attractions.maplayr.model.opengl.colortransformation
-io.attractions.maplayr.model.opengl.journey
 io.attractions.maplayr.model.opengl.level
 io.attractions.maplayr.model.opengl.locationmarker
-io.attractions.maplayr.model.opengl.route
 io.attractions.maplayr.model.opengl.shapes
 io.attractions.maplayr.model.routes
 io.attractions.maplayr.model.utils

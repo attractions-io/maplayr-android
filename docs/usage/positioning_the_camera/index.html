@@ -549,9 +549,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#move-the-camera-to-display-a-journey" class="md-nav__link">
+  <a href="#move-the-camera-to-display-a-route" class="md-nav__link">
     <span class="md-ellipsis">
-      Move the Camera to Display a Journey
+      Move the Camera to Display a Route
     </span>
   </a>
   
@@ -720,9 +720,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#move-the-camera-to-display-a-journey" class="md-nav__link">
+  <a href="#move-the-camera-to-display-a-route" class="md-nav__link">
     <span class="md-ellipsis">
-      Move the Camera to Display a Journey
+      Move the Camera to Display a Route
     </span>
   </a>
   
@@ -782,18 +782,18 @@
 </span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="n">animated</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="p">)</span>
 </span></code></pre></div>
-<h2 id="move-the-camera-to-display-a-journey">Move the Camera to Display a Journey</h2>
-<p>In this case use the <code>CameraTarget.Journey</code> class. The camera will automatically move to display the entire route as the route updates unless the user interacts with the map.</p>
+<h2 id="move-the-camera-to-display-a-route">Move the Camera to Display a Route</h2>
+<p>In this case use the <code>CameraTarget.Route</code> class with a route created by <code>Map.createRoute</code>. The camera will automatically move to display the entire route as the route updates unless the user interacts with the map.</p>
 <div class="language-kotlin highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">mapView</span><span class="p">.</span><span class="na">moveCamera</span><span class="p">(</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="n">cameraTarget</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CameraTarget</span><span class="p">.</span><span class="na">Journey</span><span class="p">(</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">        </span><span class="n">journey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">journey</span><span class="p">,</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="n">cameraTarget</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CameraTarget</span><span class="p">.</span><span class="na">Route</span><span class="p">(</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">        </span><span class="n">route</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">route</span><span class="p">,</span>
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">        </span><span class="n">tilt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Math</span><span class="p">.</span><span class="na">toRadians</span><span class="p">(</span><span class="m">30.0</span><span class="p">),</span>
 </span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">        </span><span class="n">fallback</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CameraTarget</span><span class="p">.</span><span class="na">Stationary</span>
 </span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="p">),</span>
 </span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="n">animated</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">)</span>
 </span></code></pre></div>
-<p>An example can be found here: <a href="https://github.com/attractions-io/maplayr-android/blob/main/app/src/main/java/io/attractions/maplayr/sample/ExtendedSampleActivity.kt#L124-L131">ExtendedSampleActivity.kt</a></p>
+<p>An example can be found here: <a href="https://github.com/attractions-io/maplayr-android/blob/main/app/src/main/java/io/attractions/maplayr/sample/ExtendedSampleActivity.kt#L113-L120">ExtendedSampleActivity.kt</a></p>
 <h2 id="move-the-camera-to-display-all-destinations">Move the Camera to Display All Destinations</h2>
 <p>In this case use the <code>CameraTarget.ResolvableDestinations</code> class. The camera will move so that all of the provided <code>GeographicCoordinate</code> objects are displayed.</p>
 <div class="language-kotlin highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">mapView</span><span class="p">.</span><span class="na">moveCamera</span><span class="p">(</span><span class="n">CameraTarget</span><span class="p">.</span><span class="na">ResolvableDestinations</span><span class="p">(</span>
@@ -809,7 +809,7 @@
 </span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="n">tilt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.0</span><span class="p">,</span>
 </span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="p">))</span>
 </span></code></pre></div>
-<p>An example can be found here: <a href="https://github.com/attractions-io/maplayr-android/blob/main/app/src/main/java/io/attractions/maplayr/sample/ExtendedSampleActivity.kt#L162-L169">ExtendedSampleActivity.kt</a></p>
+<p>An example can be found here: <a href="https://github.com/attractions-io/maplayr-android/blob/main/app/src/main/java/io/attractions/maplayr/sample/ExtendedSampleActivity.kt#L151-L158">ExtendedSampleActivity.kt</a></p>
 
 
 
