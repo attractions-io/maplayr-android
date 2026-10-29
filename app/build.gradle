@@ -80,6 +80,6 @@ dependencies {
     implementation 'androidx.activity:activity-ktx:1.8.2'
 
     // Attractions.io MapView
-    implementation "io.attractions:maplayr:0.0.130"
-    implementation "io.attractions:positioning-google:0.0.130"
+    implementation "io.attractions:maplayr:0.0.131"
+    implementation "io.attractions:positioning-google:0.0.131"
 }
